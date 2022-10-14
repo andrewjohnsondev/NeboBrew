@@ -63,6 +63,20 @@ export default function Cart() {
     if (!isEmpty) return setCheckCart(true);
   }, [isEmpty, setCheckCart]);
 
+  useEffect(() => {
+    const escListener = (e) => {
+      if (e.key === 'Escape' && isCartOpen) {
+        toggleCartState();
+      }
+    };
+
+    document.addEventListener('keydown', escListener);
+
+    return () => {
+      document.removeEventListener('keydown', escListener);
+    };
+  });
+
   if (!checkCart) {
     return (
       <StyledCart id='cart' aria-hidden={isCartOpen ? true : false} className={isCartOpen ? 'open' : ''}>

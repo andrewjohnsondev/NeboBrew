@@ -178,6 +178,15 @@ ul.slick-dots {
   }
 }
 
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+body.stop-scroll {
+  overflow-y: hidden;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

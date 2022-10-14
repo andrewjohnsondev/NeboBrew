@@ -53,6 +53,7 @@ export async function getStaticProps(context) {
           }
           roast
           price
+          description
           image {
             alt
             image {

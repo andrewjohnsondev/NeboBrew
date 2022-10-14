@@ -49,7 +49,6 @@ const StyledProductDetail = styled.div`
 
 export default function ProductDetail({ product }) {
   const { addItem } = useCart();
-  console.log(product);
   const [texture, setTexture] = useState('ground');
   const openCart = useZustandStore((state) => state.toggleCartState);
 
@@ -57,6 +56,7 @@ export default function ProductDetail({ product }) {
     addItem({ ...product, texture, id: product._id + texture }, 1);
     openCart();
   };
+
   return (
     <Section>
       <Wrapper>

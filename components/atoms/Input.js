@@ -6,6 +6,6 @@ const StyledInput = styled.input`
   border: ${({ error }) => (error ? 'solid 1px red' : 'none')};
 `;
 
-export default function Input({ error, placeholder, name, id, value, onChange, type }) {
-  return <StyledInput error={error} type={type} onChange={onChange} placeholder={placeholder} name={name} id={id} value={value} />;
+export default function Input({ error, placeholder, name, id, value, onChange, type, className }) {
+  return <StyledInput className={className} error={error} type={type} onChange={onChange} placeholder={placeholder} name={name} id={id} value={value} />;
 }

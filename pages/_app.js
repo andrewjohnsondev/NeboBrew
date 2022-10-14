@@ -8,6 +8,7 @@ import { ApolloProvider } from '@apollo/client';
 import client from '../apollo-client';
 import { CartProvider } from 'react-use-cart';
 import Cart from '../components/Cart/Cart';
+import QuickShop from '../components/products/quickShop/QuickShop';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
             <Toast />
             <Footer />
             <Cart />
+            <QuickShop />
           </AuthUserProvider>
         </CartProvider>
       </ApolloProvider>

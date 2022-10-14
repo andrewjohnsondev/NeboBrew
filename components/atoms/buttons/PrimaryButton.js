@@ -20,7 +20,7 @@ const Button = styled.button`
   }
 `;
 
-export default function PrimaryButton({ isLink, children, onClick, href, className, type }) {
+export default function PrimaryButton({ id, isLink, children, onClick, href, className, type }) {
   if (isLink) {
     return (
       <Link href={href}>
@@ -32,7 +32,7 @@ export default function PrimaryButton({ isLink, children, onClick, href, classNa
   }
 
   return (
-    <Button type={type} className={className} onClick={onClick}>
+    <Button id={id} type={type} className={className} onClick={onClick}>
       {children}
     </Button>
   );

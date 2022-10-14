@@ -1,10 +1,11 @@
 import ProductImage from '../atoms/ProductImage';
 import styled from 'styled-components';
-import Link from 'next/link';
 import Price from '../atoms/Price';
 import SecondaryButton from '../atoms/buttons/SecondaryButton';
 import { config } from '../styles/GlobalStyles';
 import PrimaryButton from '../atoms/buttons/PrimaryButton';
+import { useRouter } from 'next/router';
+import useZustandStore from '../../store/zustandStore';
 const StyledProduct = styled.a`
   display: flex;
   flex-direction: column;
@@ -89,9 +90,21 @@ const ProductContent = styled.div`
 
 export default function Product({ product, priority }) {
   const { name, price, roast, image, slug_regular_custom_input } = product;
+  const setModalOpen = useZustandStore((state) => state.setModalOpen);
+  const setQuickShopProduct = useZustandStore((state) => state.setQuickShopProduct);
+  const router = useRouter();
+
+  const handleNavigation = (e) => {
+    if (e.target.id !== 'quick-shop') router.push(`/coffee/${slug_regular_custom_input.current}`);
+  };
+
+  const handleQuickShopClick = () => {
+    setQuickShopProduct(product);
+    setModalOpen(true);
+  };
 
   return (
-    <Link href={`/coffee/${slug_regular_custom_input.current}`}>
+    <div role='link' tabIndex='0' onClick={handleNavigation}>
       <StyledProduct>
         {product && (
           <>
@@ -99,7 +112,9 @@ export default function Product({ product, priority }) {
               <ProductImage priority={priority} alt={image.alt} url={image.image.secure_url} />
               <div className='product-buttons'>
                 <SecondaryButton className='btn-md'>View Details</SecondaryButton>
-                <PrimaryButton className='btn-md'>Quick Shop</PrimaryButton>
+                <PrimaryButton onClick={handleQuickShopClick} id='quick-shop' className='btn-md'>
+                  Quick Shop
+                </PrimaryButton>
               </div>
             </StyledProductImage>
 
@@ -110,10 +125,12 @@ export default function Product({ product, priority }) {
               </div>
               <p className='roast'>{roast}</p>
             </ProductContent>
-            <SecondaryButton className='btn-sm quick-shop'>Quick Shop</SecondaryButton>
+            <SecondaryButton onClick={handleQuickShopClick} id='quick-shop' className='btn-sm quick-shop'>
+              Quick Shop
+            </SecondaryButton>
           </>
         )}
       </StyledProduct>
-    </Link>
+    </div>
   );
 }
