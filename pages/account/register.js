@@ -1,4 +1,4 @@
-import Register from '../../components/molecules/Register';
+import Register from '../../components/account/Register';
 import styled from 'styled-components';
 const StyledRegisterPage = styled.section`
   display: grid;

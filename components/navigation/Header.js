@@ -35,6 +35,19 @@ export default function Header() {
     if (isSearchOpen) document.body.classList.add('stop-scroll');
     if (!isSearchOpen) document.body.classList.remove('stop-scroll');
   }, [isSearchOpen]);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      console.log(e);
+      e.key === 'Escape' && setIsSearchOpen(false);
+    };
+
+    document.body.addEventListener('keydown', handleEsc);
+
+    return () => {
+      document.body.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
   return (
     <StyledHeader>
       <div className='header__inner'>

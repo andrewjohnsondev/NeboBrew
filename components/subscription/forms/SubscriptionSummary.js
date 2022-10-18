@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import PrimaryButton from '../../atoms/buttons/PrimaryButton';
 import { config } from '../../styles/GlobalStyles';
 import { Wrapper } from '../../styles/utilities';
+import axios from 'axios';
+import getStripe from '../../../lib/getStripe';
+import { useAuth } from '../../context/Auth';
 
 const StyledSummary = styled.section`
-  padding-block: 3rem;
-
   h2 {
     font-size: var(--text-3xl);
     text-align: center;
@@ -30,28 +32,70 @@ const StyledSummary = styled.section`
     gap: 1rem;
     text-transform: capitalize;
     background-color: hsl(var(--color-primary-300), 60%);
-    font-size: var(--text-xl);
     padding: 0.5em 1.25em;
     width: 100%;
-    font-weight: var(--fw-bold);
     border: 3px solid hsl(var(--color-primary));
     border-radius: var(--br);
     cursor: pointer;
     transition: all 200ms ease-in-out;
     text-align: center;
 
+    .value {
+      font-weight: var(--fw-bold);
+      font-size: var(--text-xl);
+    }
+
     &:hover {
       border-color: hsl(var(--color-primary));
     }
   }
+  .actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 1rem;
+    max-width: 30rem;
+    margin-inline: auto;
 
-  @media (min-width: ${config.med}) {
-    padding-block: 5rem;
+    .reset {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
   }
 `;
 
-function SubscriptionSummary({ subscriptionFormState, subscriptionPrice }) {
-  const summaryData = Object.entries(subscriptionFormState);
+function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
+  const summaryData = Object.entries(subscriptionState);
+  const { user } = useAuth();
+
+  const handleReset = () => {
+    setCurrentStep(1);
+    dispatch({ type: 'RESET' });
+  };
+
+  const handleSubscriptionCheckout = async () => {
+    const stripe = await getStripe();
+    let response;
+
+    if (user) {
+      response = await axios.post('/api/stripe/subscription', {
+        subscriptionDetails: subscriptionState,
+        user,
+      });
+    } else {
+      response = await axios.post('/api/stripe/subscription', {
+        subscriptionDetails: subscriptionState,
+      });
+    }
+
+    if (response.statusCode === 500) return;
+
+    const { data } = response;
+
+    stripe.redirectToCheckout({ sessionId: data.id });
+  };
+
   return (
     <StyledSummary>
       <Wrapper>
@@ -61,11 +105,19 @@ function SubscriptionSummary({ subscriptionFormState, subscriptionPrice }) {
             return (
               <li key={key}>
                 <span>{key}:</span>
-                {val}
+                <span className='value'>
+                  {val} {key === 'price' && <span>/monthly</span>}
+                </span>
               </li>
             );
           })}
         </ul>
+        <div className='actions'>
+          <PrimaryButton onClick={handleSubscriptionCheckout}>Subscribe</PrimaryButton>
+          <button onClick={handleReset} className='reset'>
+            Start Over
+          </button>
+        </div>
       </Wrapper>
     </StyledSummary>
   );

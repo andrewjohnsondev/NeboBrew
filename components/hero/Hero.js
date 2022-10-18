@@ -5,8 +5,12 @@ import { config } from '../styles/GlobalStyles';
 
 const StyledHero = styled.section`
   background-color: hsl(var(--color-primary));
-  padding-block: 3rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
 
   @media (min-width: ${config.med}) {
     padding-block: 4rem;

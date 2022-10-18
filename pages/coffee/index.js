@@ -20,6 +20,7 @@ const StoreSection = styled.section`
 
 export default function Home({ lightRoast, mediumRoast, darkRoast }) {
   const { query } = useRouter();
+  console.log(lightRoast);
 
   return (
     <main>

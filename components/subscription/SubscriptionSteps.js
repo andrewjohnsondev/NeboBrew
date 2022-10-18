@@ -14,7 +14,7 @@ const StyledSubscriptionSteps = styled.div`
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: 5rem;
     position: relative;
 
     &::after {
@@ -64,13 +64,17 @@ const StyledSubscriptionSteps = styled.div`
   }
 `;
 
-export default function SubscriptionSteps({ currentStep, setCurrentStep, subscriptionFormState }) {
-  const steps = [1, 2, 3, 4, 5];
+export default function SubscriptionSteps({ currentStep, setCurrentStep }) {
+  const steps = [1, 2, 3, 4];
+  const handleClick = (step) => {
+    currentStep > step && setCurrentStep(step);
+  };
+
   return (
     <StyledSubscriptionSteps>
       <ul>
         {steps.map((step) => (
-          <li onClick={() => currentStep > step && setCurrentStep(step)} key={step} className={step === currentStep || currentStep > step ? 'completed' : ''}>
+          <li onClick={() => handleClick(step)} key={step} className={step === currentStep || currentStep > step ? 'completed' : ''}>
             {step}
           </li>
         ))}

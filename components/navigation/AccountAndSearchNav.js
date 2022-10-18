@@ -49,6 +49,7 @@ export default function AccountAndSearchNav({ accountOnClick, cartOnClick, cartC
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const toggleCartState = useZustandStore((state) => state.toggleCartState);
   const addProducts = useZustandStore((state) => state.addProducts);
+  const [total, setTotal] = useState(0);
   const { totalItems } = useCart();
 
   const [getProducts, { loading, error, data }] = useLazyQuery(productsQuery);
@@ -56,6 +57,10 @@ export default function AccountAndSearchNav({ accountOnClick, cartOnClick, cartC
     setIsSearchOpen(!isSearchOpen);
     getProducts();
   };
+
+  useEffect(() => {
+    setTotal(totalItems);
+  }, [totalItems, setTotal]);
 
   useEffect(() => {
     if (data) {
@@ -74,7 +79,7 @@ export default function AccountAndSearchNav({ accountOnClick, cartOnClick, cartC
       <HorizontalDivider hideOnMobile={true} />
       <StyledCartWrapper>
         <NavIcon id='cartIcon' imageHref='/assets/cart.svg' onClick={() => toggleCartState()} />
-        <CartCount count={totalItems} />
+        <CartCount count={total} />
       </StyledCartWrapper>
     </StyledAccountAndSearchNav>
   );

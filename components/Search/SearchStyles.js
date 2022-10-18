@@ -7,7 +7,7 @@ export const StyledSearch = styled.div`
   max-height: 100vh;
   width: 100%;
   transform: translateY(-200%);
-  transition: transform 500ms ease-in-out;
+  transition: transform 350ms ease-in-out;
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ export const StyledSearch = styled.div`
   .inner-content {
     min-height: 100%;
     overflow-y: scroll;
-    padding-block: 4rem;
+    padding-block: 6rem;
   }
 
   .btn {

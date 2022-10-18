@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useCart } from 'react-use-cart';
 import styled from 'styled-components';
+import formatMoney from '../../lib/helpers/formatMoney';
 import useZustandStore from '../../store/zustandStore';
+import PrimaryButton from '../atoms/buttons/PrimaryButton';
 import CartEmpty from './CartEmpty';
 import CartItem from './CartItem';
+import getStripe from '../../lib/getStripe';
+import axios from 'axios';
+import { useAuth } from '../context/Auth';
 
 const StyledCart = styled.aside`
   background-color: white;
@@ -27,6 +32,26 @@ const StyledCart = styled.aside`
     & > * {
       margin-top: 1.5rem;
     }
+  }
+
+  .total-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: auto;
+    background-color: hsl(var(--color-neutral-100));
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: var(--fw-bold);
+    font-size: var(--text-xl);
   }
 
   .cart__header {
@@ -54,10 +79,22 @@ const StyledCart = styled.aside`
 `;
 
 export default function Cart() {
-  const { isEmpty, totalItems, items, updateItemQuantity, removeItem } = useCart();
+  const { isEmpty, totalItems, items } = useCart();
   const isCartOpen = useZustandStore((state) => state.isCartOpen);
   const toggleCartState = useZustandStore((state) => state.toggleCartState);
   const [checkCart, setCheckCart] = useState(false);
+  const [total, setTotal] = useState(0);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (isEmpty) return;
+    const value = items.reduce((prevVal, currentVal) => {
+      return prevVal + currentVal.price * currentVal.quantity;
+    }, 0);
+
+    setTotal(value);
+  }, [items, isEmpty]);
+
   useEffect(() => {
     if (isEmpty) return setCheckCart(false);
     if (!isEmpty) return setCheckCart(true);
@@ -76,6 +113,28 @@ export default function Cart() {
       document.removeEventListener('keydown', escListener);
     };
   });
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    let response;
+
+    if (user) {
+      response = await axios.post('/api/stripe', {
+        cartItems: items,
+        user,
+      });
+    } else {
+      response = await axios.post('/api/stripe', {
+        cartItems: items,
+      });
+    }
+
+    if (response.statusCode === 500) return;
+
+    const { data } = response;
+
+    stripe.redirectToCheckout({ sessionId: data.id });
+  };
 
   if (!checkCart) {
     return (
@@ -105,6 +164,12 @@ export default function Cart() {
           <CartItem key={item.id} item={item} />
         ))}
       </ul>
+      <div className='total-wrapper'>
+        <p className='total'>
+          Subtotal: <span>{formatMoney(total)}</span>
+        </p>
+        <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
+      </div>
     </StyledCart>
   );
 }

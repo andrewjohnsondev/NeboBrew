@@ -4,8 +4,6 @@ import { config } from '../../styles/GlobalStyles';
 import { Wrapper } from '../../styles/utilities';
 
 const StyledButtonForm = styled.div`
-  padding-block: 3rem;
-
   h2 {
     text-align: center;
     font-size: var(--text-3xl);
@@ -45,7 +43,6 @@ const StyledButtonForm = styled.div`
   }
 
   @media (min-width: ${config.med}) {
-    padding-block: 5rem;
     h2 {
       font-size: var(--text-4xl);
     }
@@ -63,14 +60,21 @@ const StyledButtonForm = styled.div`
   }
 `;
 
-export default function ButtonForm({ title, step, setCurrentStep, setSubscriptionFormState, subscriptionFormState, formKey, values }) {
+export default function ButtonForm({ title, step, setCurrentStep, dispatch, subscriptionState, formKey, values }) {
   const onFormButtonClick = (e) => {
-    setSubscriptionFormState((prevState) => {
-      return { ...prevState, [formKey]: e.target.value };
-    });
-
-    setCurrentStep(step + 1);
+    if (formKey === 'texture') {
+      dispatch({ type: 'TEXTURE', payload: e.target.value });
+      setCurrentStep(step + 1);
+      return;
+    }
+    if (formKey === 'roast') {
+      dispatch({ type: 'ROAST', payload: e.target.value });
+      setCurrentStep(step + 1);
+      return;
+    }
   };
+
+  console.log(subscriptionState);
   return (
     <StyledButtonForm>
       <Wrapper>
@@ -78,7 +82,7 @@ export default function ButtonForm({ title, step, setCurrentStep, setSubscriptio
         <div className='button-wrapper'>
           {values.map((val) => {
             return (
-              <button className={subscriptionFormState[formKey] === val ? 'active' : ''} key={val} value={val} onClick={onFormButtonClick}>
+              <button className={subscriptionState[formKey] === val ? 'active' : ''} key={val} value={val} onClick={onFormButtonClick}>
                 {val}
               </button>
             );

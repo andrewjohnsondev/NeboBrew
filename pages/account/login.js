@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Login from '../../components/molecules/Login';
+import Login from '../../components/account/Login';
 const StyledLoginPage = styled.section`
   display: grid;
   place-items: center;
