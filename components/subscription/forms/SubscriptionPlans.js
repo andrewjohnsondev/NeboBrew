@@ -1,4 +1,4 @@
-import { useTransition } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import formatMoney from '../../../lib/helpers/formatMoney';
 import { config } from '../../styles/GlobalStyles';
@@ -112,14 +112,17 @@ const StyledButtonForm = styled.div`
 `;
 
 export default function ButtonForm({ title, step, setCurrentStep, dispatch, subscriptionState, formKey, subscriptionPlans }) {
-  const [isPending, startTransition] = useTransition();
   const onFormButtonClick = (e) => {
     dispatch({ type: 'PRICE', payload: e.target.dataset.price });
     dispatch({ type: 'QUANTITY', payload: e.target.value });
-    startTransition(() => {
-      setCurrentStep(step + 1);
-    });
+    console.log('updated');
   };
+
+  useEffect(() => {
+    if (subscriptionState.price && subscriptionState.quantity) {
+      setCurrentStep((step) => step + 1);
+    }
+  }, [subscriptionState, setCurrentStep]);
 
   subscriptionPlans.sort((a, b) => (a.quantity < b.quantity ? -1 : 1));
   return (

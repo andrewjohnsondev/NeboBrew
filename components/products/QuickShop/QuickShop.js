@@ -55,7 +55,7 @@ function QuickShop() {
     return () => {
       document.removeEventListener('keydown', escListener);
     };
-  });
+  }, []);
 
   const handleModalClose = (e) => {
     if (!modalRef.current.contains(e.target)) {
@@ -64,9 +64,8 @@ function QuickShop() {
   };
 
   if (!isModalOpen) return null;
-  console.log(quickShopProduct);
+
   const { name, price, roast, _id, description } = quickShopProduct;
-  console.log(quickShopProduct);
 
   return (
     <StyledModalOverlay onClick={handleModalClose}>

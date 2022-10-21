@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         mode: 'payment',
         payment_method_types: ['card'],
         billing_address_collection: 'required',
-        shipping_options: [{ shipping_rate: 'shr_1LtEG2Jh4NQ6dY9Ql7bnDHDs' }, { shipping_rate: 'shr_1LtEGXJh4NQ6dY9QKWsFdZ7l' }],
+        shipping_options: [{ shipping_rate: 'shr_1LtEG2Jh4NQ6dY9Ql7bnDHDs' }],
         line_items: req.body.cartItems.map((item) => {
           const img = item.image.image.secure_url;
 

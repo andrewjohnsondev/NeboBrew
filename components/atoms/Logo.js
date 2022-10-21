@@ -13,7 +13,7 @@ const StyledLogo = styled.a`
   }
 `;
 
-export default function NeboBrew() {
+export default function Logo() {
   return (
     <Link href='/'>
       <StyledLogo href='/'>NEBO BREW</StyledLogo>

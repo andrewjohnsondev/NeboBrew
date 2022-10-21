@@ -20,14 +20,16 @@ const StyledCart = styled.aside`
   width: 90%;
   max-width: 25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding-inline: 1rem;
   transform: translateX(100%);
   transition: transform 300ms ease-in-out;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
   .cart-items {
     padding: 0;
     margin: 0;
+    padding-inline: 1rem;
 
     & > * {
       margin-top: 1.5rem;
@@ -35,13 +37,9 @@ const StyledCart = styled.aside`
   }
 
   .total-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin-top: auto;
     background-color: hsl(var(--color-neutral-100));
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -55,11 +53,15 @@ const StyledCart = styled.aside`
   }
 
   .cart__header {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     font-size: 2rem;
-    padding-block: 1rem;
+    padding: 1rem;
     border-bottom: solid 1px hsl(var(--color-neutral-300));
+    background-color: white;
+    z-index: 9999;
 
     h2 {
       font-size: var(--text-2xl);

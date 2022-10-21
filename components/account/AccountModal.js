@@ -24,8 +24,8 @@ export default function AccountModule({ isOpen }) {
         <p className='name'>{user.displayName}</p>
         <p className='email'>{user.email}</p>
       </div>
-      <ModalLink href={`/account/${user.uid}/orders`} text='Orders' />
-      <ModalLink href={`/account/${user.uid}/subscriptions`} text='Subscriptions' />
+      <ModalLink href={`/account/orders`} text='Orders' />
+      <ModalLink href={`/account/subscriptions`} text='Subscriptions' />
       <SecondaryButton onClick={handleLogOut} className='logout btn-sm mt-4'>
         Logout
       </SecondaryButton>

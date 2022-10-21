@@ -74,6 +74,10 @@ export default function ButtonForm({ title, step, setCurrentStep, dispatch, subs
     }
   };
 
+  useEffect(() => {
+    dispatch({ type: 'RESET-PLAN' });
+  }, [dispatch]);
+
   console.log(subscriptionState);
   return (
     <StyledButtonForm>

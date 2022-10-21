@@ -12,6 +12,13 @@ const useZustandStore = create((set) => ({
 
   quickShopProduct: {},
   setQuickShopProduct: (product) => set((state) => ({ quickShopProduct: product })),
+
+  isPromptOpen: false,
+  setPromptOpen: (isOpen) => set((state) => ({ isPromptOpen: isOpen })),
+  question: '',
+  setQuestion: (value) => set((state) => ({ question: value })),
+  answer: false,
+  setAnswer: (value) => set((state) => ({ answer: value })),
 }));
 
 export default useZustandStore;

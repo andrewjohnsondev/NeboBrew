@@ -64,10 +64,11 @@ const StyledSubscriptionSteps = styled.div`
   }
 `;
 
-export default function SubscriptionSteps({ currentStep, setCurrentStep }) {
+export default function SubscriptionSteps({ currentStep, setCurrentStep, dispatch }) {
   const steps = [1, 2, 3, 4];
   const handleClick = (step) => {
     currentStep > step && setCurrentStep(step);
+    dispatch({ type: 'RESET-PLAN' });
   };
 
   return (

@@ -42,12 +42,14 @@ export default function Header() {
       e.key === 'Escape' && setIsSearchOpen(false);
     };
 
-    document.body.addEventListener('keydown', handleEsc);
+    if (isSearchOpen) {
+      document.body.addEventListener('keydown', handleEsc);
+    }
 
     return () => {
       document.body.removeEventListener('keydown', handleEsc);
     };
-  }, []);
+  }, [isSearchOpen]);
   return (
     <StyledHeader>
       <div className='header__inner'>

@@ -1,7 +1,6 @@
 import { useReducer, useState } from 'react';
 import SubscriptionsForm from './SubscriptionForms';
 import SubscriptionSteps from './SubscriptionSteps';
-import { useAuth } from '../context/Auth';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +12,8 @@ const reducer = (state, action) => {
       return { ...state, price: action.payload };
     case 'QUANTITY':
       return { ...state, quantity: action.payload };
+    case 'RESET-PLAN':
+      return { ...state, quantity: null, price: null };
     case 'RESET':
       return { texture: null, roast: null, quantity: null, price: null };
     default:

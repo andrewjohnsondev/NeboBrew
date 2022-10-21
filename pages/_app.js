@@ -9,6 +9,13 @@ import client from '../apollo-client';
 import { CartProvider } from 'react-use-cart';
 import Cart from '../components/Cart/Cart';
 import QuickShop from '../components/products/quickShop/QuickShop';
+import styled from 'styled-components';
+import PromptOverlay from '../components/prompt/PromptOverlay';
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,14 +24,17 @@ function MyApp({ Component, pageProps }) {
       <ApolloProvider client={client}>
         <CartProvider>
           <AuthUserProvider>
-            <Header />
-            <PopularProvider>
-              <Component {...pageProps} />
-            </PopularProvider>
+            <FlexWrapper>
+              <Header />
+              <PopularProvider>
+                <Component {...pageProps} />
+              </PopularProvider>
+              <Footer />
+            </FlexWrapper>
             <Toast />
-            <Footer />
             <Cart />
             <QuickShop />
+            <PromptOverlay />
           </AuthUserProvider>
         </CartProvider>
       </ApolloProvider>

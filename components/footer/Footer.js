@@ -22,6 +22,7 @@ const StyledFooter = styled.footer`
   background-color: hsl(var(--color-neutral-1000));
   color: hsl(var(--text-white));
   padding-block: 4rem;
+  margin-top: auto;
 
   @media (min-width: ${config.lg}) {
     padding-block: 5rem;

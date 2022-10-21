@@ -2,8 +2,6 @@ import ProductImage from '../atoms/ProductImage';
 import styled from 'styled-components';
 import Link from 'next/link';
 import formatMoney from '../../lib/helpers/formatMoney';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import wait from 'waait';
 
 const StyledSearchItem = styled.a`

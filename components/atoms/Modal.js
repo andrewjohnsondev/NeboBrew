@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-import { config } from '../styles/GlobalStyles';
 const display = keyframes`
 from {
 	opacity: 0;
