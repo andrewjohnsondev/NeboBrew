@@ -9,14 +9,8 @@ const aboutLinks = [
   { name: 'Terms Of Service', href: '/terms' },
   { name: 'Privacy Policy', href: '/policy' },
 ];
-const resourceLinks = [
-  { name: 'Shipping', href: '/shipping' },
-  { name: 'Product Source', href: '/product-source' },
-];
-const contactLinks = [
-  { name: '(435) 813-2895', href: '/phone' },
-  { name: 'Submit A Request', href: '/submit' },
-];
+const resourceLinks = [{ name: 'Shipping', href: '/shipping' }];
+const contactLinks = [{ name: '(801) 555-0103' }, { name: 'Submit A Request', href: '/submit' }];
 
 const StyledFooter = styled.footer`
   background-color: hsl(var(--color-neutral-1000));
