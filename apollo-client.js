@@ -3,7 +3,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://10dvmugv.api.sanity.io/v1/graphql/production/default',
+  uri: process.env.NEXT_PUBLIC_SANITY_URI,
   cache: new InMemoryCache(),
 });
 

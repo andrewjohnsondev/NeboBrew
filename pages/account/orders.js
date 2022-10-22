@@ -30,6 +30,7 @@ const getOrders = gql`
     allOrders(where: { email: { eq: $email } }) {
       _id
       orderCreated
+      stripeDate
       name
       orderNumber
       email

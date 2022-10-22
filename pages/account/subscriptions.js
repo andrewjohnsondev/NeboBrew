@@ -30,6 +30,7 @@ const getSubscription = gql`
     allSubscriptions(where: { email: { eq: $email } }) {
       _id
       subscriptionCreated
+      stripeDate
       name
       email
       orderNumber

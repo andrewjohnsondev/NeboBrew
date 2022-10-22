@@ -1,5 +1,6 @@
 import SubscriptionItem from './SubscriptionItem';
 import styled from 'styled-components';
+import filterListByDate from '../../../lib/helpers/filterListByDate';
 const StyledSubscriptionList = styled.ul`
   list-style: none;
   padding: 0;
@@ -11,9 +12,10 @@ const StyledSubscriptionList = styled.ul`
 `;
 
 function SubscriptionList({ data, refetchSubscriptions }) {
+  const filteredList = filterListByDate(data);
   return (
     <StyledSubscriptionList>
-      {data.map((item) => {
+      {filteredList.map((item) => {
         return <SubscriptionItem refetchSubscriptions={refetchSubscriptions} key={item._id} item={item} />;
       })}
     </StyledSubscriptionList>

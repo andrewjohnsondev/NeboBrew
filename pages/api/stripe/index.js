@@ -30,6 +30,7 @@ export default async function handler(req, res) {
             quantity: item.quantity,
           };
         }),
+        allow_promotion_codes: true,
         success_url: `${req.headers.origin}/checkout/success`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
       };
