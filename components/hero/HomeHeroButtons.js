@@ -9,6 +9,10 @@ const HomeHeroWrapper = styled.div`
   flex-direction: column;
   gap: 1.5rem;
 
+  .btn-gray {
+    background-color: hsl(var(--color-neutral-200));
+  }
+
   @media (min-width: ${config.med}) {
     flex-direction: row;
     gap: 1.25rem;

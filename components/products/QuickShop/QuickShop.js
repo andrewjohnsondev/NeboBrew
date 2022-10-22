@@ -6,6 +6,7 @@ import formatMoney from '../../../lib/helpers/formatMoney';
 import TextureSelect from '../TextureSelect';
 import Quantity from '../../atoms/Quantity';
 import { StyledModalOverlay, StyledModalBody, StyledModal } from './StyledQuickShop';
+import useEventListener from '../../../lib/hooks/useEventListener';
 
 function QuickShop() {
   const isModalOpen = useZustandStore((state) => state.isModalOpen);
@@ -15,6 +16,14 @@ function QuickShop() {
   const [texture, setTexture] = useState('ground');
   const [quantity, setQuantity] = useState(1);
   const modalRef = useRef();
+  useEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+    if (e.key === 'Enter' && isModalOpen) {
+      addToCart();
+    }
+  });
 
   const { addItem } = useCart();
 
@@ -38,24 +47,6 @@ function QuickShop() {
   useEffect(() => {
     if (isModalOpen) document.querySelector('body').classList.add('modal-open');
   }, [isModalOpen]);
-
-  useEffect(() => {
-    const escListener = (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-
-      if (e.key === 'Enter') {
-        addToCart();
-      }
-    };
-
-    document.addEventListener('keydown', escListener);
-
-    return () => {
-      document.removeEventListener('keydown', escListener);
-    };
-  }, []);
 
   const handleModalClose = (e) => {
     if (!modalRef.current.contains(e.target)) {

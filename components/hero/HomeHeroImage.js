@@ -8,6 +8,7 @@ const HomeHeroImageOuter = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 
   box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
   filter: blur(5px);
@@ -33,13 +34,13 @@ const HomeHeroImageWrapper = styled.div`
   @media (min-width: ${config.med}) {
     position: absolute;
     right: -40%;
-    top: 0;
+    top: 20px;
     img {
       opacity: 1;
     }
   }
   @media (min-width: ${config.lg}) {
-    right: -25%;
+    right: -35%;
   }
 `;
 

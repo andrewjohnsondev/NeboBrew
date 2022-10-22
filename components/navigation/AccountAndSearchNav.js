@@ -39,7 +39,7 @@ export default function AccountAndSearchNav({ accountOnClick, cartOnClick, cartC
 
   return (
     <StyledAccountAndSearchNav>
-      <NavIcon imageHref='/assets/search.svg' hideOnMobile={true} onClick={handleSearchClick} />
+      <NavIcon id='searchIcon' imageHref='/assets/search.svg' hideOnMobile={true} onClick={handleSearchClick} />
       <div onMouseLeave={() => setAccountModalOpen(false)} onMouseEnter={() => setAccountModalOpen(true)} className='account'>
         <NavIcon imageHref='/assets/account.svg' hideOnMobile={true} onClick={accountOnClick} />
         <AccountModule isOpen={accountModalOpen} />

@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import wait from 'waait';
 import FormSuccess from '../atoms/FormSuccess';
 import { toast } from 'react-toastify';
+import { TailSpin } from 'react-loader-spinner';
 
 const StyledForm = styled.form`
   display: flex;
@@ -89,6 +90,7 @@ export default function Login() {
   const [isResetEnabled, setIsResetEnabled] = useState(false);
   const [email, setEmail] = useState('');
   const [isShown, setIsShown] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -97,10 +99,12 @@ export default function Login() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       await login(data.email, data.password);
       router.push('/');
       toast.success(`Welcome back!`);
     } catch (err) {
+      setLoading(false);
       switch (err.message) {
         case 'Firebase: Error (auth/user-not-found).':
           setError('User not found');
@@ -183,7 +187,9 @@ export default function Login() {
       </div>
       {error && <Error className='error'>{error}</Error>}
       <div className='flex'>
-        <PrimaryButton type='submit'>Sign In</PrimaryButton>
+        <PrimaryButton disabled={loading ? true : false} type='submit'>
+          {loading ? <TailSpin height={18} width={18} color='#fff' /> : 'Sign In'}
+        </PrimaryButton>
         <button onClick={handlePasswordReset} className='reset'>
           Forgot your password?
         </button>

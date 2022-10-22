@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { config } from '../styles/GlobalStyles';
 
 export const StyledSearch = styled.div`
   background: hsl(var(--color-neutral-100));
@@ -9,7 +10,7 @@ export const StyledSearch = styled.div`
   transform: translateY(-200%);
   transition: transform 350ms ease-in-out;
   z-index: -1;
-  display: flex;
+  display: ${({ initMenu }) => (initMenu ? 'flex' : 'none')};
   flex-direction: column;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   overflow-y: scroll;
@@ -26,6 +27,17 @@ export const StyledSearch = styled.div`
   .btn {
     background-color: hsl(var(--color-primary));
     color: white;
+  }
+
+  .close {
+    background-color: transparent;
+    border: none;
+    font-size: var(--text-2xl);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    display: none;
   }
 
   .search-item-wrapper {
@@ -53,6 +65,12 @@ export const StyledSearch = styled.div`
 
     &:focus-visible {
       outline: none;
+    }
+  }
+
+  @media (min-width: ${config.med}) {
+    .close {
+      display: block;
     }
   }
 `;

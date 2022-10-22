@@ -115,6 +115,17 @@ h5 {
   line-height: 1.1;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+{
+  text-transform: uppercase !important;
+}
+
 /* Inherit fonts for inputs and buttons */
 input,
 button,

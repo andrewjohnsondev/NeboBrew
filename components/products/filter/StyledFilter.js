@@ -13,7 +13,7 @@ const StyledFilter = styled.section`
     z-index: 9999;
     inset: 0;
     top: 10vh;
-    padding-top: 6rem;
+    padding-top: 10rem;
     gap: 2rem;
     background-color: hsl(var(--color-neutral-1000));
     position: fixed;
@@ -47,7 +47,7 @@ const StyledFilter = styled.section`
 
   .close {
     position: absolute;
-    top: 50px;
+    top: 100px;
     right: 30px;
     cursor: pointer;
     background-color: transparent;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { config } from '../styles/GlobalStyles';
-import NavIcon from './NavIcon';
 const StyledMobileSearch = styled.button`
   border: none;
-  background-color: hsl(var(--color-primary-300));
+  background-color: hsl(var(--color-primary), 90%);
+  color: white;
   display: flex;
   gap: 0.25rem;
   justify-content: center;
@@ -20,6 +20,11 @@ const StyledMobileSearch = styled.button`
   img,
   span {
     display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')};
+    pointer-events: none;
+  }
+
+  img {
+    filter: brightness(0) invert(1);
   }
 
   .close {
@@ -49,7 +54,7 @@ function MobileSearch({ setIsSearchOpen, isSearchOpen }) {
     });
   };
   return (
-    <StyledMobileSearch isSearchOpen={isSearchOpen} onClick={handleSearchOpen}>
+    <StyledMobileSearch id='searchIcon' isSearchOpen={isSearchOpen} onClick={handleSearchOpen}>
       <p className='close'>X</p>
       <img src='/assets/search.svg' alt='' />
       <span>Search</span>

@@ -88,13 +88,13 @@ const StyledAbout = styled.main`
 
   @media (min-width: ${config.med}) {
     .wrapper {
-      padding-block: 6rem;
+      padding-block: 8rem;
     }
     .grid {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       place-content: center;
-      grid-row-gap: 6rem;
+      grid-row-gap: 10rem;
       grid-column-gap: 2rem;
     }
 
@@ -120,7 +120,7 @@ const StyledAbout = styled.main`
 function About({ aboutImage, qualityImage }) {
   console.log(aboutImage);
   return (
-    <StyledAbout className='bg-pattern-light'>
+    <StyledAbout className=''>
       <Wrapper className='wrapper'>
         <div className='grid'>
           <div className='content-wrapper'>

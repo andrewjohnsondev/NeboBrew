@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useCart } from 'react-use-cart';
 import styled from 'styled-components';
 import formatMoney from '../../lib/helpers/formatMoney';
@@ -9,6 +9,11 @@ import CartItem from './CartItem';
 import getStripe from '../../lib/getStripe';
 import axios from 'axios';
 import { useAuth } from '../context/Auth';
+import useMenuInit from '../../lib/hooks/useMenuInit';
+import useEventListener from '../../lib/hooks/useEventListener';
+import useClickOutside from '../../lib/hooks/useClickOutside';
+import { toast } from 'react-toastify';
+import { TailSpin } from 'react-loader-spinner';
 
 const StyledCart = styled.aside`
   background-color: white;
@@ -23,7 +28,7 @@ const StyledCart = styled.aside`
   transform: translateX(100%);
   transition: transform 300ms ease-in-out;
   overflow-y: auto;
-  display: flex;
+  display: ${({ initMenu }) => (initMenu ? 'flex' : 'none')};
   flex-direction: column;
 
   .cart-items {
@@ -84,9 +89,22 @@ export default function Cart() {
   const { isEmpty, totalItems, items } = useCart();
   const isCartOpen = useZustandStore((state) => state.isCartOpen);
   const toggleCartState = useZustandStore((state) => state.toggleCartState);
+  const closeCartState = useZustandStore((state) => state.closeCartState);
   const [checkCart, setCheckCart] = useState(false);
   const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const [initMenu] = useMenuInit();
+  const cartRef = useRef();
+  useClickOutside(cartRef, (e) => {
+    if (e.target.id === 'cartIcon') return;
+    closeCartState();
+  });
+  useEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCartState();
+    }
+  });
 
   useEffect(() => {
     if (isEmpty) return;
@@ -102,45 +120,37 @@ export default function Cart() {
     if (!isEmpty) return setCheckCart(true);
   }, [isEmpty, setCheckCart]);
 
-  useEffect(() => {
-    const escListener = (e) => {
-      if (e.key === 'Escape' && isCartOpen) {
-        toggleCartState();
-      }
-    };
-
-    document.addEventListener('keydown', escListener);
-
-    return () => {
-      document.removeEventListener('keydown', escListener);
-    };
-  });
-
   const handleCheckout = async () => {
-    const stripe = await getStripe();
-    let response;
+    setLoading(true);
+    try {
+      const stripe = await getStripe();
+      let response;
 
-    if (user) {
-      response = await axios.post('/api/stripe', {
-        cartItems: items,
-        user,
-      });
-    } else {
-      response = await axios.post('/api/stripe', {
-        cartItems: items,
-      });
+      if (user) {
+        response = await axios.post('/api/stripe', {
+          cartItems: items,
+          user,
+        });
+      } else {
+        response = await axios.post('/api/stripe', {
+          cartItems: items,
+        });
+      }
+
+      if (response.statusCode === 500) return;
+
+      const { data } = response;
+
+      stripe.redirectToCheckout({ sessionId: data.id });
+    } catch (errror) {
+      setLoading(false);
+      toast.error(error.message);
     }
-
-    if (response.statusCode === 500) return;
-
-    const { data } = response;
-
-    stripe.redirectToCheckout({ sessionId: data.id });
   };
 
   if (!checkCart) {
     return (
-      <StyledCart id='cart' aria-hidden={isCartOpen ? true : false} className={isCartOpen ? 'open' : ''}>
+      <StyledCart ref={cartRef} initMenu={initMenu} id='cart' aria-hidden={isCartOpen ? true : false} className={isCartOpen ? 'open' : ''}>
         <div className='cart__header'>
           <h2>Your Cart</h2>
           <button onClick={() => toggleCartState()} className='close'>
@@ -153,7 +163,7 @@ export default function Cart() {
   }
 
   return (
-    <StyledCart id='cart' aria-hidden={isCartOpen ? true : false} className={isCartOpen ? 'open' : ''}>
+    <StyledCart ref={cartRef} initMenu={initMenu} id='cart' aria-hidden={isCartOpen ? true : false} className={isCartOpen ? 'open' : ''}>
       <div className='cart__header'>
         <h2>Your Cart ({totalItems})</h2>
         <button onClick={() => toggleCartState()} className='close'>
@@ -170,7 +180,9 @@ export default function Cart() {
         <p className='total'>
           Subtotal: <span>{formatMoney(total)}</span>
         </p>
-        <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
+        <PrimaryButton disabled={loading ? true : false} onClick={handleCheckout}>
+          {loading ? <TailSpin height={18} width={18} color='#fff' /> : 'Checkout'}
+        </PrimaryButton>
       </div>
     </StyledCart>
   );

@@ -1,10 +1,13 @@
 import SingleInput from '../atoms/SingleInput';
 import { Wrapper } from '../styles/utilities';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import SearchItem from './SearchItem';
 import useZustandStore from '../../store/zustandStore';
 import { StyledSearch } from './SearchStyles';
 import { gql, useLazyQuery } from '@apollo/client';
+import useMenuInit from '../../lib/hooks/useMenuInit';
+import useClickOutside from '../../lib/hooks/useClickOutside';
+import useEventListener from '../../lib/hooks/useEventListener';
 
 const productsQuery = gql`
   query {
@@ -33,10 +36,26 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   const addProducts = useZustandStore((state) => state.addProducts);
   const [value, setValue] = useState('');
   const [filteredList, setFilteredList] = useState([]);
+  const [initMenu] = useMenuInit();
+  const searchRef = useRef();
+  useClickOutside(searchRef, (e) => {
+    console.log(e.target);
+    if (e.target.id === 'searchIcon') return;
+    setIsSearchOpen(false);
+  });
+  useEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      setIsSearchOpen(false);
+    }
+  });
 
   useEffect(() => {
     getProducts();
   }, []);
+
+  useEffect(() => {
+    setValue('');
+  }, [isSearchOpen]);
 
   useEffect(() => {
     if (data) {
@@ -52,6 +71,10 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
     e.preventDefault();
   };
 
+  const handleClose = () => {
+    setIsSearchOpen((state) => !state);
+  };
+
   useEffect(() => {
     if (value === '') return setFilteredList([]);
     const filterProducts = products.filter((product) => product.name.toLowerCase().includes(value.toLowerCase()) || product.roast[0].toLowerCase().includes(value.toLowerCase()));
@@ -59,7 +82,10 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   }, [value]);
 
   return (
-    <StyledSearch className={isSearchOpen ? 'open' : ''}>
+    <StyledSearch ref={searchRef} initMenu={initMenu} className={isSearchOpen ? 'open' : ''}>
+      <button onClick={handleClose} className='close'>
+        X
+      </button>
       <Wrapper className='inner-content'>
         <form onSubmit={handleFormSubmit}>
           <SingleInput onChange={handleInputChange} value={value} inputClass='inputClass' name='text' type='text' buttonText='Search' btnClass='btn' isSearchText />

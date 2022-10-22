@@ -44,7 +44,7 @@ export default function Header() {
   useEffect(() => {
     if (isSearchOpen) document.body.classList.add('stop-scroll');
     if (!isSearchOpen) document.body.classList.remove('stop-scroll');
-  }, [isSearchOpen]);
+  }, [isSearchOpen, isMobileNavOpen]);
 
   useEffect(() => {
     const handleEsc = (e) => {

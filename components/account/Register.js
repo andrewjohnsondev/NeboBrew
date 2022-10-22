@@ -11,6 +11,7 @@ import wait from 'waait';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { TailSpin } from 'react-loader-spinner';
 
 const display = keyframes`
   from {
@@ -90,6 +91,7 @@ const StyledForm = styled.form`
 export default function Register() {
   const { signUp } = useAuth();
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const auth = getAuth();
   const router = useRouter();
 
@@ -100,6 +102,7 @@ export default function Register() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       const user = await signUp(data.email, data.password);
       await updateProfile(auth.currentUser, {
         displayName: `${data.firstName} ${data.lastName}`,
@@ -107,6 +110,7 @@ export default function Register() {
       router.push('/');
       toast.success(`Welcome ${data.firstName} ${data.lastName}!`);
     } catch (err) {
+      setLoading(false);
       switch (err.message) {
         case 'Firebase: Error (auth/email-already-in-use).':
           setError('User with that email already exists');
@@ -144,7 +148,9 @@ export default function Register() {
         {errors.password?.type === 'minLength' && <Error>Password must be atleast 6 characters</Error>}
       </div>
       {error && <Error className='error'>{error}</Error>}
-      <PrimaryButton type='submit'>Sign Up</PrimaryButton>
+      <PrimaryButton disabled={loading ? true : false} type='submit'>
+        {loading ? <TailSpin height={18} width={18} color='#fff' /> : 'Sign Up'}
+      </PrimaryButton>
       <p className='link'>
         Already have an account? <Link href='/account/login'>Sign In</Link>
       </p>

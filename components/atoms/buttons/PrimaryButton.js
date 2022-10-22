@@ -14,13 +14,15 @@ const Button = styled.button`
   letter-spacing: 1px;
   cursor: pointer;
   transition: background-color 200ms ease;
+  display: grid;
+  place-items: center;
 
   &:hover {
     background-color: hsl(var(--color-neutral-1000), 0.8);
   }
 `;
 
-export default function PrimaryButton({ id, isLink, children, onClick, href, className, type }) {
+export default function PrimaryButton({ disabled, id, isLink, children, onClick, href, className, type }) {
   if (isLink) {
     return (
       <Link href={href}>
@@ -32,7 +34,7 @@ export default function PrimaryButton({ id, isLink, children, onClick, href, cla
   }
 
   return (
-    <Button id={id} type={type} className={className} onClick={onClick}>
+    <Button disabled={disabled} id={id} type={type} className={className} onClick={onClick}>
       {children}
     </Button>
   );
