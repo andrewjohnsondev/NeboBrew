@@ -2,15 +2,19 @@ import styled from 'styled-components';
 import Logo from '../atoms/Logo';
 import AccountAndSearchNav from './AccountAndSearchNav';
 import { useEffect, useState } from 'react';
-
 import { Wrapper } from '../styles/utilities';
 import PrimaryNav from './PrimaryNav';
-import NavIcon from './NavIcon';
 import Search from '../Search/Search';
+import Hamburger from '../atoms/Hamburger';
+import useRouterListen from '../../lib/hooks/useRouterListen';
+import MobileSearch from './MobileSearch';
 
 const StyledHeader = styled.header`
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 99999;
 
   .header__inner {
@@ -30,6 +34,12 @@ const StyledHeaderInner = styled.div`
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  console.log(isSearchOpen);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  useRouterListen(() => {
+    setIsSearchOpen(false);
+    setIsMobileNavOpen(false);
+  });
 
   useEffect(() => {
     if (isSearchOpen) document.body.classList.add('stop-scroll');
@@ -38,7 +48,6 @@ export default function Header() {
 
   useEffect(() => {
     const handleEsc = (e) => {
-      console.log(e);
       e.key === 'Escape' && setIsSearchOpen(false);
     };
 
@@ -55,14 +64,15 @@ export default function Header() {
       <div className='header__inner'>
         <Wrapper>
           <StyledHeaderInner>
-            <NavIcon hideOnDesktop={true} imageHref='/assets/hamburger.svg' />
+            <Hamburger isOpen={isMobileNavOpen} onHamburgerClick={() => setIsMobileNavOpen((state) => !state)} />
             <Logo />
-            <PrimaryNav />
+            <PrimaryNav isOpen={isMobileNavOpen} />
             <AccountAndSearchNav setIsSearchOpen={setIsSearchOpen} isSearchOpen={isSearchOpen} />
           </StyledHeaderInner>
         </Wrapper>
         <Search isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
       </div>
+      <MobileSearch setIsSearchOpen={setIsSearchOpen} isSearchOpen={isSearchOpen} />
     </StyledHeader>
   );
 }

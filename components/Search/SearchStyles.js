@@ -4,22 +4,23 @@ export const StyledSearch = styled.div`
   background: hsl(var(--color-neutral-100));
   position: fixed;
   top: 10vh;
-  max-height: 100vh;
   width: 100%;
+  max-height: 90vh;
   transform: translateY(-200%);
   transition: transform 350ms ease-in-out;
   z-index: -1;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow-y: scroll;
 
   .open {
     transform: translateY(100%) !important;
   }
 
   .inner-content {
-    min-height: 100%;
-    overflow-y: scroll;
-    padding-block: 6rem;
+    padding-block: 5rem;
+    overflow-y: auto;
   }
 
   .btn {

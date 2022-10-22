@@ -8,7 +8,7 @@ const StyledSearchItem = styled.a`
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 3rem;
   border: 2px solid hsl(var(--color-neutral-900));
   border-radius: var(--br);

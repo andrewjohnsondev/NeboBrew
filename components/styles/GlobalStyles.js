@@ -56,6 +56,7 @@ const GlobalStyle = createGlobalStyle`
   --toastify-color-success: hsl(26, 11%, 46%);
 }
 
+
 /* Remove default margin */
 body,
 h1,

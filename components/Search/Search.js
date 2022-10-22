@@ -4,11 +4,45 @@ import { useEffect, useState } from 'react';
 import SearchItem from './SearchItem';
 import useZustandStore from '../../store/zustandStore';
 import { StyledSearch } from './SearchStyles';
+import { gql, useLazyQuery } from '@apollo/client';
+
+const productsQuery = gql`
+  query {
+    allProduct {
+      name
+      _id
+      slug_regular_custom_input {
+        current
+      }
+      roast
+      price
+      description
+      image {
+        alt
+        image {
+          secure_url
+        }
+      }
+    }
+  }
+`;
 
 function Search({ isSearchOpen, setIsSearchOpen }) {
+  const [getProducts, { loading, error, data }] = useLazyQuery(productsQuery);
   const products = useZustandStore((state) => state.products);
+  const addProducts = useZustandStore((state) => state.addProducts);
   const [value, setValue] = useState('');
   const [filteredList, setFilteredList] = useState([]);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      addProducts(data.allProduct);
+    }
+  }, [data, addProducts]);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
@@ -20,7 +54,6 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
 
   useEffect(() => {
     if (value === '') return setFilteredList([]);
-    console.log(value, filteredList);
     const filterProducts = products.filter((product) => product.name.toLowerCase().includes(value.toLowerCase()) || product.roast[0].toLowerCase().includes(value.toLowerCase()));
     setFilteredList(filterProducts);
   }, [value]);

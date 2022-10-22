@@ -17,6 +17,6 @@ const StyledNavIcon = styled.button`
   }
 `;
 
-export default function NavIcon({ onClick, imageHref, hideOnMobile, hideOnDesktop }) {
-  return <StyledNavIcon hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile} imageHref={imageHref} onClick={onClick} />;
+export default function NavIcon({ style, onClick, imageHref, hideOnMobile, hideOnDesktop }) {
+  return <StyledNavIcon style={style} hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile} imageHref={imageHref} onClick={onClick} />;
 }

@@ -39,6 +39,7 @@ const StyledAbout = styled.main`
     flex-direction: column;
     gap: 2rem;
     max-width: 52ch;
+    margin-inline: auto;
 
     h1,
     h2 {
