@@ -152,6 +152,6 @@ export default async function webhookHandler(req, res) {
         console.log(err.message);
       }
     }
-    // res.status(200).send();
+    res.status(200).send();
   }
 }
