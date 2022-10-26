@@ -64,7 +64,7 @@ export default function Header() {
       <div className='header__inner'>
         <Wrapper>
           <StyledHeaderInner>
-            <Hamburger isOpen={isMobileNavOpen} onHamburgerClick={() => setIsMobileNavOpen((state) => !state)} />
+            <Hamburger isOpen={isMobileNavOpen} onClick={() => setIsMobileNavOpen((state) => !state)} />
             <Logo />
             <PrimaryNav isOpen={isMobileNavOpen} />
             <AccountAndSearchNav setIsSearchOpen={setIsSearchOpen} isSearchOpen={isSearchOpen} />

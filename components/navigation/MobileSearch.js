@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { config } from '../styles/GlobalStyles';
 const StyledMobileSearch = styled.button`
   border: none;
-  background-color: hsl(var(--color-primary), 90%);
+  background-color: hsl(var(--color-neutral-1000));
   color: white;
   display: flex;
   gap: 0.25rem;
@@ -19,7 +19,7 @@ const StyledMobileSearch = styled.button`
 
   img,
   span {
-    display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')};
+    /* display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')}; */
     pointer-events: none;
   }
 
@@ -31,15 +31,15 @@ const StyledMobileSearch = styled.button`
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
-    margin-right: auto;
-    margin-left: 1.5rem;
+    margin-inline: auto;
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? '100%' : '0%')};
     transition: opacity 200ms ease-in-out;
     cursor: pointer;
+    display: none;
   }
 
-  span {
-    margin-right: auto;
+  p {
+    margin-inline: auto;
   }
 
   @media (min-width: ${config.med}) {
@@ -55,9 +55,8 @@ function MobileSearch({ setIsSearchOpen, isSearchOpen }) {
   };
   return (
     <StyledMobileSearch id='searchIcon' isSearchOpen={isSearchOpen} onClick={handleSearchOpen}>
-      <p className='close'>X</p>
-      <img src='/assets/search.svg' alt='' />
-      <span>Search</span>
+      {/* <p className='close'>X</p> */}
+      <p>{isSearchOpen ? 'X' : 'Search'}</p>
     </StyledMobileSearch>
   );
 }
