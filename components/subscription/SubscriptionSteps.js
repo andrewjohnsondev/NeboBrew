@@ -3,7 +3,7 @@ import { config } from '../styles/GlobalStyles';
 import { Wrapper } from '../styles/utilities';
 const StyledSubscriptionSteps = styled.div`
   background-color: hsl(var(--color-neutral-1000));
-  padding-block: 1.5rem;
+  padding-block: 2rem;
   display: flex;
   justify-content: center;
   padding-inline: 1.25rem;
@@ -39,7 +39,7 @@ const StyledSubscriptionSteps = styled.div`
       border-radius: 100%;
       border: solid 2px hsl(var(--color-neutral-500));
       aspect-ratio: 1 / 1;
-      padding: 1rem;
+      padding: 0.5rem;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -51,6 +51,12 @@ const StyledSubscriptionSteps = styled.div`
       font-size: var(--text-3xl);
       &::after {
         padding: 1.5rem;
+      }
+
+      li {
+        &::after {
+          padding: 1rem;
+        }
       }
     }
   }

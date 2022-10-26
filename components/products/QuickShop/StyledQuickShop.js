@@ -45,7 +45,7 @@ export const StyledModalOverlay = styled.div`
     font-size: var(--text-3xl);
     position: absolute;
     right: 15px;
-    top: 5px;
+    top: 15px;
   }
 
   .addBtn {

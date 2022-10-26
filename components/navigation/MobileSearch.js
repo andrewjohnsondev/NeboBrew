@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 import { config } from '../styles/GlobalStyles';
 const StyledMobileSearch = styled.button`
-  border: none;
+  border: solid 1px hsl(var(--color-neutral-1000));
   background-color: hsl(var(--color-neutral-1000));
   color: white;
   display: flex;
-  gap: 0.25rem;
   justify-content: center;
   font-size: var(--text-xl);
   align-items: center;
   cursor: pointer;
   font-weight: var(--fw-bold);
   padding-block: 1rem;
-  z-index: -1;
+
   margin-left: auto;
   transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(85%)' : 'translateX(0%)')};
   width: 100%;
@@ -36,8 +35,6 @@ const StyledMobileSearch = styled.button`
   .search {
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? '0' : '1')};
     transition: opacity 200ms ease-in-out;
-
-    /* display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')}; */
   }
 
   @media (min-width: ${config.med}) {
