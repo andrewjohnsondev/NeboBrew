@@ -11,6 +11,7 @@ export const config = {
   },
 };
 export default async function webhookHandler(req, res) {
+  console.log('test from backend');
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   if (req.method === 'POST') {
     const buf = await buffer(req);
