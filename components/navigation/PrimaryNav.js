@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import NavLink from './NavLink';
 import { config } from '../styles/GlobalStyles';
 import { routes } from '../../config';
-import { useEffect } from 'react';
 import useMenuInit from '../../lib/hooks/useMenuInit';
 const StyledPrimaryNav = styled.nav`
   align-items: center;
