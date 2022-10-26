@@ -57,8 +57,6 @@ export default function ProductDetail({ product }) {
     openCart();
   };
 
-  console.log(product.image.image.secure_url);
-
   return (
     <Section>
       <Wrapper>

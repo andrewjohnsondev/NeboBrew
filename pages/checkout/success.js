@@ -5,6 +5,7 @@ import PrimaryButton from '../../components/atoms/buttons/PrimaryButton';
 import runFireworks from '../../lib/utils/fireworks';
 import checkmark from '../../public/assets/checkmark.svg';
 import { config } from '../../components/styles/GlobalStyles';
+import Head from 'next/head';
 
 const StyledSuccess = styled.section`
   background-color: hsl(var(--color-neutral-1000));
@@ -91,25 +92,31 @@ export default function Success() {
     emptyCart();
   }, []);
   return (
-    <StyledSuccess className='bg-pattern'>
-      <h1>THANK YOU!</h1>
-      <div className='confirmation'>
-        <div className='header'>
-          <h2>
-            <span>
-              <img className='checkmark' src='/assets/checkmarkSuccess.svg' alt='' />
-            </span>
-            Order Complete!
-          </h2>
-          <p>Please check your email for your receipt and order details.</p>
+    <>
+      <Head>
+        <title>Coffee | Thank You{product.name}</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <StyledSuccess className='bg-pattern'>
+        <h1>THANK YOU!</h1>
+        <div className='confirmation'>
+          <div className='header'>
+            <h2>
+              <span>
+                <img className='checkmark' src='/assets/checkmarkSuccess.svg' alt='' />
+              </span>
+              Order Complete!
+            </h2>
+            <p>Please check your email for your receipt and order details.</p>
+          </div>
+          <PrimaryButton isLink href='/coffee'>
+            Continue Shopping
+          </PrimaryButton>
+          <p className='support'>
+            If you have any questions, please email <span className='support-email'>order@nebobrew.com</span>
+          </p>
         </div>
-        <PrimaryButton isLink href='/coffee'>
-          Continue Shopping
-        </PrimaryButton>
-        <p className='support'>
-          If you have any questions, please email <span className='support-email'>order@nebobrew.com</span>
-        </p>
-      </div>
-    </StyledSuccess>
+      </StyledSuccess>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { useAuth } from '../../components/context/Auth';
 import styled from 'styled-components';
 import { TailSpin } from 'react-loader-spinner';
 import EmptyState from '../../components/atoms/EmptyState';
+import Head from 'next/head';
 const StyledSubscriptions = styled.section`
   background-color: hsl(var(--color-neutral-100));
   padding: 4rem 1rem;
@@ -76,22 +77,34 @@ function Subscriptions() {
 
   if (data) {
     return (
-      <StyledSubscriptions className='bg-pattern-light'>
-        <h2>Subscriptions</h2>
-        {data.allSubscriptions.length > 0 ? (
-          <SubscriptionList refetchSubscriptions={refetchSubscriptions} data={data.allSubscriptions} />
-        ) : (
-          <EmptyState linkUrl={'/subscriptions'} action='Create One' message="You don't have any subscriptions..." />
-        )}
-      </StyledSubscriptions>
+      <>
+        <Head>
+          <title>Nebo Brew | Subscriptions</title>
+          <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        </Head>
+        <StyledSubscriptions className='bg-pattern-light'>
+          <h2>Subscriptions</h2>
+          {data.allSubscriptions.length > 0 ? (
+            <SubscriptionList refetchSubscriptions={refetchSubscriptions} data={data.allSubscriptions} />
+          ) : (
+            <EmptyState linkUrl={'/subscriptions'} action='Create One' message="You don't have any subscriptions..." />
+          )}
+        </StyledSubscriptions>
+      </>
     );
   }
 
   return (
-    <StyledSubscriptions className='bg-pattern-light loader-container'>
-      <h2>Subscriptions</h2>
-      {called && loading && <TailSpin className='tail-spin' height={72} width={72} color='#333' />}
-    </StyledSubscriptions>
+    <>
+      <Head>
+        <title>Nebo Brew | Subscriptions</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <StyledSubscriptions className='bg-pattern-light loader-container'>
+        <h2>Subscriptions</h2>
+        {called && loading && <TailSpin className='tail-spin' height={72} width={72} color='#333' />}
+      </StyledSubscriptions>
+    </>
   );
 }
 export default Subscriptions;

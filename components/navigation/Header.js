@@ -34,7 +34,7 @@ const StyledHeaderInner = styled.div`
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  console.log(isSearchOpen);
+
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   useRouterListen(() => {
     setIsSearchOpen(false);

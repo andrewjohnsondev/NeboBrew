@@ -48,12 +48,10 @@ export default async function webhookHandler(req, res) {
             lineItems.data.map(async (product) => {
               const [name, texture] = product.description.split('-');
               const data = await fetchProduct(name.replace(/\s/g, ''));
-              console.log(data);
+
               return { name: product.description, quantity: product.quantity, id: data.result[0]._id, texture };
             })
           );
-
-          console.log(data);
 
           neboAxios.post('/', {
             mutations: [
@@ -85,8 +83,6 @@ export default async function webhookHandler(req, res) {
 
         getProductData();
       }
-
-      console.log(event);
 
       if (event.data.object.mode === 'subscription') {
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
@@ -125,16 +121,16 @@ export default async function webhookHandler(req, res) {
 
       res.status(200).send();
     }
-    console.log('event', event);
+
     if (event.type === 'customer.subscription.deleted') {
       const id = event.data.object.id;
       try {
         const { data } = await axios.get(
           `https://10dvmugv.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20'subscriptions'%20%26%26%20subscriptionId%20%3D%3D%20'${id}'%5D%7B%0A%20_id%0A%20%20%7D%20%20`
         );
-        console.log(data);
+
         const subscriptionId = data.result[0]._id;
-        console.log(subscriptionId);
+
         await neboAxios.post('/', {
           mutations: [
             {

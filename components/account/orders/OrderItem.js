@@ -133,7 +133,6 @@ const StyledSubscriptionItem = styled.li`
 `;
 
 function OrderItem({ item }) {
-  console.log(item);
   const [isExpanded, setIsExpanded] = useState(false);
   const { _id, orderCreated, orderItems, orderNumber, orderPrice, shippingAddress } = item;
   const data = item.orderItems.map((product) => {

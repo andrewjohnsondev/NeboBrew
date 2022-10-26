@@ -39,7 +39,6 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   const [initMenu] = useMenuInit();
   const searchRef = useRef();
   useClickOutside(searchRef, (e) => {
-    console.log(e.target);
     if (e.target.id === 'searchIcon') return;
     setIsSearchOpen(false);
   });

@@ -115,7 +115,6 @@ export default function ButtonForm({ title, step, setCurrentStep, dispatch, subs
   const onFormButtonClick = (e) => {
     dispatch({ type: 'PRICE', payload: e.target.dataset.price });
     dispatch({ type: 'QUANTITY', payload: e.target.value });
-    console.log('updated');
   };
 
   useEffect(() => {

@@ -13,7 +13,6 @@ const StyledSubscriptionForm = styled.section`
 `;
 
 export default function SubscriptionsForm({ subscriptionPlans, subscriptionState, dispatch, currentStep, setCurrentStep }) {
-  console.log(subscriptionState);
   return (
     <StyledSubscriptionForm>
       {currentStep === 1 && (

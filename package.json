@@ -20,6 +20,7 @@
     "graphql": "^16.5.0",
     "micro": "^9.4.1",
     "next": "12.1.6",
+    "nodemailer": "^6.8.0",
     "order-id": "^2.1.2",
     "react": "18.1.0",
     "react-accessible-accordion": "^5.0.0",

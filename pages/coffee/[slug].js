@@ -1,14 +1,21 @@
 import { gql } from '@apollo/client';
+import Head from 'next/head';
 import client from '../../apollo-client';
 import Cta from '../../components/cta/Cta';
 import ProductDetail from '../../components/products/ProductDetail';
 
 export default function ProductPage({ product }) {
   return (
-    <main>
-      <ProductDetail product={product} />
-      <Cta />
-    </main>
+    <>
+      <Head>
+        <title>Coffee | Nebo Brew {product.name}</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <main>
+        <ProductDetail product={product} />
+        <Cta />
+      </main>
+    </>
   );
 }
 

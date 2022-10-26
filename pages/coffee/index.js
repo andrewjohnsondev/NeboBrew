@@ -8,6 +8,7 @@ import { config } from '../../components/styles/GlobalStyles';
 import Filter from '../../components/products/filter/Filter';
 import { useRouter } from 'next/router';
 import FilteredProducts from '../../components/products/FilteredProducts';
+import Head from 'next/head';
 
 const StoreSection = styled.section`
   padding-bottom: 3rem;
@@ -20,25 +21,30 @@ const StoreSection = styled.section`
 
 export default function Home({ lightRoast, mediumRoast, darkRoast }) {
   const { query } = useRouter();
-  console.log(lightRoast);
 
   return (
-    <main>
-      <Hero title='Coffee roasted to perfection' />
-      <Filter />
+    <>
+      <Head>
+        <title>Coffee | Nebo Brew Coffee</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <main>
+        <Hero title='Coffee roasted to perfection' />
+        <Filter />
 
-      {!query.roast && (
-        <StoreSection>
-          <Products priority={true} products={lightRoast} title='Light Roast' />
-          <Products priority={true} products={mediumRoast} title='Medium Roast' />
-          <Products priority={false} products={darkRoast} title='Dark Roast' />
-        </StoreSection>
-      )}
+        {!query.roast && (
+          <StoreSection>
+            <Products priority={true} products={lightRoast} title='Light Roast' />
+            <Products priority={true} products={mediumRoast} title='Medium Roast' />
+            <Products priority={false} products={darkRoast} title='Dark Roast' />
+          </StoreSection>
+        )}
 
-      {query.roast && <FilteredProducts query={query} products={{ lightRoast, mediumRoast, darkRoast }} />}
+        {query.roast && <FilteredProducts query={query} products={{ lightRoast, mediumRoast, darkRoast }} />}
 
-      <Cta />
-    </main>
+        <Cta />
+      </main>
+    </>
   );
 }
 

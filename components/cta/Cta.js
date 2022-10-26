@@ -9,6 +9,7 @@ import neboAxios from '../../config/axios';
 import Error from '../atoms/Error';
 import wait from 'waait';
 import { TailSpin } from 'react-loader-spinner';
+import axios from 'axios';
 
 const CheckEmailList = gql`
   query ($email: String!) {
@@ -78,6 +79,10 @@ export default function Cta() {
           setLoading(false);
         })
         .catch((err) => setError(err.message));
+
+      axios.post('/api/discount', {
+        email,
+      });
       return;
     }
 

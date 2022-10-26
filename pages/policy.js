@@ -4,6 +4,7 @@ import RichText from '../components/atoms/RichText';
 import { Wrapper } from '../components/styles/utilities';
 import styled from 'styled-components';
 import { config } from '../components/styles/GlobalStyles';
+import Head from 'next/head';
 const StyledPolicyPage = styled.main`
   padding-block: 4rem;
   max-width: 80ch;
@@ -36,11 +37,18 @@ const StyledPolicyPage = styled.main`
 
 export default function PolicyPage({ content }) {
   return (
-    <StyledPolicyPage>
-      <Wrapper>
-        <RichText value={content[0].contentRaw} />
-      </Wrapper>
-    </StyledPolicyPage>
+    <>
+      <Head>
+        <title>Coffee | Policy</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <main></main>
+      <StyledPolicyPage>
+        <Wrapper>
+          <RichText value={content[0].contentRaw} />
+        </Wrapper>
+      </StyledPolicyPage>
+    </>
   );
 }
 

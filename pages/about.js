@@ -5,6 +5,7 @@ import client from '../apollo-client';
 import { gql } from '@apollo/client';
 import Image from 'next/image';
 import { config } from '../components/styles/GlobalStyles';
+import Head from 'next/head';
 
 const StyledAbout = styled.main`
   .wrapper {
@@ -118,39 +119,45 @@ const StyledAbout = styled.main`
 `;
 
 function About({ aboutImage, qualityImage }) {
-  console.log(aboutImage);
   return (
-    <StyledAbout className=''>
-      <Wrapper className='wrapper'>
-        <div className='grid'>
-          <div className='content-wrapper'>
-            <h1>About Us</h1>
-            <p className='description'>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam quos dolorum ducimus saepe earum perferendis debitis dolores consequatur, voluptates perspiciatis eum explicabo?
-              Quisquam iusto sint, nisi vero totam quod eum impedit sed molestias reprehenderit aut dolorum error unde doloribus odit officiis repellat, repellendus eaque animi. Iure et qui asperiores
-              amet nisi repellat, exercitationem minima aspernatur earum? Iure, ducimus saepe! Ullam, nulla! Explicabo illo dolores.
-            </p>
+    <>
+      <Head>
+        <title>Coffee | About</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <main></main>
+      <StyledAbout className=''>
+        <Wrapper className='wrapper'>
+          <div className='grid'>
+            <div className='content-wrapper'>
+              <h1>About Us</h1>
+              <p className='description'>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam quos dolorum ducimus saepe earum perferendis debitis dolores consequatur, voluptates perspiciatis eum explicabo?
+                Quisquam iusto sint, nisi vero totam quod eum impedit sed molestias reprehenderit aut dolorum error unde doloribus odit officiis repellat, repellendus eaque animi. Iure et qui
+                asperiores amet nisi repellat, exercitationem minima aspernatur earum? Iure, ducimus saepe! Ullam, nulla! Explicabo illo dolores.
+              </p>
+            </div>
+            <div className='image-wrapper'>
+              <Image className='round' src={aboutImage.allPhotos[0].image.secure_url} alt={aboutImage.allPhotos[0].alt} priority objectFit='cover' layout='fill' />
+            </div>
+            <div className='image-wrapper'>
+              <Image className='round' src={qualityImage.allPhotos[0].image.secure_url} alt={qualityImage.allPhotos[0].alt} priority objectFit='cover' layout='fill' />
+            </div>
+            <div className='content-wrapper quality'>
+              <h2>Our Quality</h2>
+              <p className='description'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt dignissimos nam saepe. Tempora, molestiae aliquid natus ad unde animi, corporis ipsam cum delectus provident
+                autem neque velit maiores? Magnam voluptates dicta dolore rerum explicabo iure facere voluptatum obcaecati maiores?
+              </p>
+            </div>
           </div>
-          <div className='image-wrapper'>
-            <Image className='round' src={aboutImage.allPhotos[0].image.secure_url} alt={aboutImage.allPhotos[0].alt} priority objectFit='cover' layout='fill' />
-          </div>
-          <div className='image-wrapper'>
-            <Image className='round' src={qualityImage.allPhotos[0].image.secure_url} alt={qualityImage.allPhotos[0].alt} priority objectFit='cover' layout='fill' />
-          </div>
-          <div className='content-wrapper quality'>
-            <h2>Our Quality</h2>
-            <p className='description'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt dignissimos nam saepe. Tempora, molestiae aliquid natus ad unde animi, corporis ipsam cum delectus provident
-              autem neque velit maiores? Magnam voluptates dicta dolore rerum explicabo iure facere voluptatum obcaecati maiores?
-            </p>
-          </div>
+        </Wrapper>
+        <div className='bg-pattern vision'>
+          <h2>OUR PRODUCT VISION</h2>
+          <p>We create high quality coffee for your active lifestyle. Each bean is roasted to perfection. Our promise is to never make you feel like you wasted a cup.</p>
         </div>
-      </Wrapper>
-      <div className='bg-pattern vision'>
-        <h2>OUR PRODUCT VISION</h2>
-        <p>We create high quality coffee for your active lifestyle. Each bean is roasted to perfection. Our promise is to never make you feel like you wasted a cup.</p>
-      </div>
-    </StyledAbout>
+      </StyledAbout>
+    </>
   );
 }
 

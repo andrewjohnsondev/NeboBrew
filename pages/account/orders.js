@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { TailSpin } from 'react-loader-spinner';
 import EmptyState from '../../components/atoms/EmptyState';
 import OrdersList from '../../components/account/orders/OrdersList';
+import Head from 'next/head';
 const StyledOrders = styled.section`
   background-color: hsl(var(--color-neutral-100));
   padding: 4rem 1rem;
@@ -75,22 +76,32 @@ function Orders() {
     }
   }, [user, loadingUser, router]);
 
-  console.log(data);
-
   if (data) {
     return (
-      <StyledOrders className='bg-pattern-light'>
-        <h2>Orders</h2>
-        {data.allOrders.length > 0 ? <OrdersList data={data.allOrders} /> : <EmptyState linkUrl={'/coffee'} action='Create One' message="You don't have any orders..." />}
-      </StyledOrders>
+      <>
+        <Head>
+          <title>Nebo Brew | Orders</title>
+          <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        </Head>
+        <StyledOrders className='bg-pattern-light'>
+          <h2>Orders</h2>
+          {data.allOrders.length > 0 ? <OrdersList data={data.allOrders} /> : <EmptyState linkUrl={'/coffee'} action='Create One' message="You don't have any orders..." />}
+        </StyledOrders>
+      </>
     );
   }
 
   return (
-    <StyledOrders className='bg-pattern-light loader-container'>
-      <h2>Orders</h2>
-      {called && loading && <TailSpin className='tail-spin' height={72} width={72} color='#333' />}
-    </StyledOrders>
+    <>
+      <Head>
+        <title>Nebo Brew | Orders</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <StyledOrders className='bg-pattern-light loader-container'>
+        <h2>Orders</h2>
+        {called && loading && <TailSpin className='tail-spin' height={72} width={72} color='#333' />}
+      </StyledOrders>
+    </>
   );
 }
 export default Orders;

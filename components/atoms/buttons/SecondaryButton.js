@@ -16,7 +16,7 @@ const Button = styled.button`
   transition: all 200ms ease;
 
   &:hover {
-    background-color: hsl(var(--color-primary));
+    background-color: hsl(var(--color-primary)) !important;
     color: hsl(var(--color-white));
   }
 `;

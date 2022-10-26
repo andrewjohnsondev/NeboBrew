@@ -6,6 +6,7 @@ import PopularFeature from '../components/products/PopularFeature';
 import { Wrapper } from '../components/styles/utilities';
 import { useEffect } from 'react';
 import Cta from '../components/cta/Cta';
+import Head from 'next/head';
 
 export default function Home({ heroImage, products }) {
   const { popular, setPopular } = usePopular();
@@ -14,11 +15,17 @@ export default function Home({ heroImage, products }) {
     setPopular(products);
   }, []);
   return (
-    <main>
-      <HomeHero imageHref={heroImage} />
-      <PopularFeature />
-      <Cta />
-    </main>
+    <>
+      <Head>
+        <title>Coffee | Nebo Brew</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <main>
+        <HomeHero imageHref={heroImage} />
+        <PopularFeature />
+        <Cta />
+      </main>
+    </>
   );
 }
 
