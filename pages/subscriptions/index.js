@@ -1,9 +1,8 @@
 import Cta from '../../components/cta/Cta';
 import Hero from '../../components/hero/Hero';
-import Subscription from '../../components/Subscription';
+import Subscription from '../../components/subscription';
 import { gql } from '@apollo/client';
 import client from '../../apollo-client';
-import formatMoney from '../../lib/helpers/formatMoney';
 import Head from 'next/head';
 
 export default function index({ plans }) {

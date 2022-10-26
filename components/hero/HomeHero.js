@@ -4,7 +4,7 @@ import HomeHeroButtons from './HomeHeroButtons';
 import HomeHeroImage from './HomeHeroImage';
 import { Wrapper } from '../styles/utilities';
 import { config } from '../styles/GlobalStyles';
-import SubheadingSmall from '../atoms/SubHeadingSmall';
+import SubheadingSmall from '../atoms/SubheadingSmall';
 
 const HomeHeroContent = styled.div`
   display: flex;
