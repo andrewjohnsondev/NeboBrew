@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 	--color-primary: 26, 11%, 46%;
   --color-primary-200: 25, 23%, 85%;
   --color-primary-300: 25, 23%, 74%;
+  --color-primary-900: 26, 14%, 39%;
   --color-success: 122, 92%, 85%;
   --color-danger-light: 0, 82%, 89%;
   --color-danger-dark:  0, 67%, 44%;
@@ -122,7 +123,7 @@ h3,
 h4,
 h5,
 h5,
-h6,
+h6
 {
   text-transform: uppercase !important;
 }
@@ -132,6 +133,7 @@ input,
 button,
 textarea,
 select {
+  color: inherit;
   font: inherit;
 }
 

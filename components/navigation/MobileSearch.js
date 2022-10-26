@@ -14,9 +14,9 @@ const StyledMobileSearch = styled.button`
   padding-block: 1rem;
   z-index: -1;
   margin-left: auto;
-  transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(90%)' : 'translateX(0%)')};
+  transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(85%)' : 'translateX(0%)')};
   width: 100%;
-  transition: transform 200ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 
   p {
     pointer-events: none;
@@ -29,7 +29,7 @@ const StyledMobileSearch = styled.button`
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? '1' : '0')};
     transition: opacity 200ms ease-in-out;
     position: absolute;
-    width: 10%;
+    width: 15%;
     left: 0;
     color: white;
   }

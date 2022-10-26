@@ -63,7 +63,7 @@ export const StyledModal = styled.div`
   background: white;
   width: 500px;
   border-radius: var(--br);
-  padding: 1rem;
+  padding: 1.75rem;
   position: relative;
 
   @media (min-width: ${config.med}) {

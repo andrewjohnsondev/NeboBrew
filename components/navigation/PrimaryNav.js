@@ -6,7 +6,7 @@ import useMenuInit from '../../lib/hooks/useMenuInit';
 const StyledPrimaryNav = styled.nav`
   align-items: center;
   position: fixed;
-  background-color: hsl(var(--color-neutral-1000));
+  background-color: hsl(var(--color-primary-900));
   color: white;
   top: 0;
   left: 0;
