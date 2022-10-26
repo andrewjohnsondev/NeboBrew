@@ -31,7 +31,7 @@ export default async function webhookHandler(req, res) {
       const session = event.data.object;
       // Note that you'll need to add an async prefix to this route handler
 
-      if (event.data.object.mode !== 'subscription') {
+      if (!event.data.object.mode.subscription) {
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
 
         // !todo create order
