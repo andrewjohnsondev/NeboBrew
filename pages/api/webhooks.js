@@ -81,7 +81,11 @@ export default async function webhookHandler(req, res) {
           });
         }
 
-        getProductData();
+        try {
+          getProductData();
+        } catch (error) {
+          return res.status(400).send(`Webhook error: ${error.message}`);
+        }
       }
 
       if (event.data.object.mode === 'subscription') {
