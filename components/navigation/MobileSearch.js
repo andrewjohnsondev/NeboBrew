@@ -15,31 +15,28 @@ const StyledMobileSearch = styled.button`
   z-index: -1;
   margin-left: auto;
   width: ${({ isSearchOpen }) => (isSearchOpen ? '15%' : '100%')};
-  transition: width 250ms ease-in-out;
+  transition: width 200ms ease-in-out;
 
-  img,
-  span {
+  p {
     /* display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')}; */
     pointer-events: none;
-  }
-
-  img {
-    filter: brightness(0) invert(1);
+    display: flex;
+    justify-content: center;
   }
 
   .close {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    margin-inline: auto;
-    opacity: ${({ isSearchOpen }) => (isSearchOpen ? '100%' : '0%')};
+    opacity: ${({ isSearchOpen }) => (isSearchOpen ? '1' : '0')};
     transition: opacity 200ms ease-in-out;
-    cursor: pointer;
-    display: none;
-  }
-
-  p {
+    position: absolute;
     margin-inline: auto;
+    z-index: 9999999;
+    color: white;
+  }
+  .search {
+    opacity: ${({ isSearchOpen }) => (isSearchOpen ? '0' : '1')};
+    transition: opacity 200ms ease-in-out;
+
+    /* display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')}; */
   }
 
   @media (min-width: ${config.med}) {
@@ -55,8 +52,10 @@ function MobileSearch({ setIsSearchOpen, isSearchOpen }) {
   };
   return (
     <StyledMobileSearch id='searchIcon' isSearchOpen={isSearchOpen} onClick={handleSearchOpen}>
-      {/* <p className='close'>X</p> */}
-      <p>{isSearchOpen ? 'X' : 'Search'}</p>
+      <p>
+        <span className='close'>X</span>
+        <span className='search'>Search</span>
+      </p>
     </StyledMobileSearch>
   );
 }
