@@ -11,9 +11,9 @@ export const config = {
   },
 };
 export default async function webhookHandler(req, res) {
-  console.log('test from backend');
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   if (req.method === 'POST') {
+    console.log('test from backend');
     const buf = await buffer(req);
     const sig = req.headers['stripe-signature'];
     const webhookSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
@@ -28,6 +28,7 @@ export default async function webhookHandler(req, res) {
     }
 
     if (event.type === 'checkout.session.completed') {
+      console.log('complete');
       const session = event.data.object;
       // Note that you'll need to add an async prefix to this route handler
 
@@ -85,7 +86,7 @@ export default async function webhookHandler(req, res) {
         try {
           getProductData();
         } catch (error) {
-          return res.status(400).send(`Webhook error: ${error.message}`);
+          console.log(error);
         }
       }
 
@@ -152,6 +153,6 @@ export default async function webhookHandler(req, res) {
         console.log(err.message);
       }
     }
-    res.status(200).send();
+    // res.status(200).send();
   }
 }
