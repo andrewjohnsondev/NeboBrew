@@ -1,6 +1,5 @@
 import { usePopular } from '../context/PopularProvider';
 import PopularFeatureHeading from './PopularFeatureHeading';
-// import PopularProducts from '../molecules/PopularProducts';
 import { Section, Wrapper } from '../styles/utilities';
 import styled from 'styled-components';
 import Product from './Product';
