@@ -7,6 +7,7 @@ import AccountModule from '../account/AccountModal';
 import useZustandStore from '../../store/zustandStore';
 import { useCart } from 'react-use-cart';
 import useClickOutside from '../../lib/hooks/useClickOutside';
+import useRouterListen from '../../lib/hooks/useRouterListen';
 
 const StyledAccountAndSearchNav = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export default function AccountAndSearchNav({ accountOnClick, cartOnClick, cartC
   const { totalItems } = useCart();
   const modalRef = useRef();
 
+  useRouterListen(() => setAccountModalOpen(false));
   useClickOutside(modalRef, (e) => {
     if (e.target.id === 'account') return;
     setAccountModalOpen(false);

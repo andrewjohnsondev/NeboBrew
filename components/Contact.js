@@ -22,6 +22,7 @@ const StyledForm = styled.form`
   padding: 2rem 0.5rem;
   border-radius: var(--br);
   position: relative;
+  margin-inline: 0.625rem;
 
   .center {
     display: grid;

@@ -34,6 +34,7 @@ const StyledForm = styled.form`
   background-color: white;
   padding: 2rem 0.5rem;
   border-radius: var(--br);
+  margin-inline: 0.625rem;
 
   label {
     font-size: var(--text-base);
