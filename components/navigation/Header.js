@@ -20,6 +20,8 @@ const StyledHeader = styled.header`
   .header__inner {
     background-color: white;
     display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     align-items: center;
     min-height: 10vh;
     padding-block: 1.75em;

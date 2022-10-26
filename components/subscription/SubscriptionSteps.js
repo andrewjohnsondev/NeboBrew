@@ -39,7 +39,7 @@ const StyledSubscriptionSteps = styled.div`
       border-radius: 100%;
       border: solid 2px hsl(var(--color-neutral-500));
       aspect-ratio: 1 / 1;
-      padding: 0.5rem;
+      padding: 0.75rem;
       position: absolute;
       top: 50%;
       left: 50%;
