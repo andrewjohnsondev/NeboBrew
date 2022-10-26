@@ -68,7 +68,7 @@ const StyledCartItem = styled.li`
     justify-content: space-between;
     padding-block: 0.25em;
     font-size: 0.9rem;
-    max-width: 4.5rem;
+    max-width: 6rem;
 
     .quantity-btn {
       background: none;

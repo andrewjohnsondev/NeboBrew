@@ -83,10 +83,7 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
+
 
 /* Set core body defaults */
 body {
