@@ -94,7 +94,7 @@ export default function Success() {
   return (
     <>
       <Head>
-        <title>Coffee | Thank You{product.name}</title>
+        <title>Coffee | Thank You</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <StyledSuccess className='bg-pattern'>
