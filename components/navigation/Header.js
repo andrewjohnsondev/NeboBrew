@@ -16,7 +16,9 @@ const StyledHeader = styled.header`
   right: 0;
   width: 100%;
   z-index: 99999;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 
   .header__inner {
     background-color: white;

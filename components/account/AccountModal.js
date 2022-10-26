@@ -3,7 +3,7 @@ import ModalLink from '../atoms/ModalLink';
 import { useAuth } from '../context/Auth';
 import SecondaryButton from '../atoms/buttons/SecondaryButton';
 
-export default function AccountModule({ isOpen }) {
+export default function AccountModule({ isOpen, modalRef }) {
   const { user, logout } = useAuth();
   const handleLogOut = () => {
     logout();
@@ -11,7 +11,7 @@ export default function AccountModule({ isOpen }) {
 
   if (!user) {
     return (
-      <Modal isOpen={isOpen}>
+      <Modal modalRef={modalRef} isOpen={isOpen}>
         <ModalLink href='/account/login' text='Sign In' />
         <ModalLink href='/account/register' text='Sign Up' />
       </Modal>
@@ -19,7 +19,7 @@ export default function AccountModule({ isOpen }) {
   }
 
   return (
-    <Modal isOpen={isOpen}>
+    <Modal modalRef={modalRef} isOpen={isOpen}>
       <div>
         <p className='name'>{user.displayName}</p>
         <p className='email'>{user.email}</p>

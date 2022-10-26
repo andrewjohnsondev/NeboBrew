@@ -1,27 +1,20 @@
 import styled from 'styled-components';
 import { config } from '../styles/GlobalStyles';
-const StyledMobileSearch = styled.button`
-  border: solid 1px hsl(var(--color-neutral-1000));
-  background-color: hsl(var(--color-neutral-1000));
-  color: white;
-  display: flex;
-  justify-content: center;
-  font-size: var(--text-xl);
-  align-items: center;
-  cursor: pointer;
-  font-weight: var(--fw-bold);
-  padding-block: 1rem;
-
-  margin-left: auto;
-  transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(85%)' : 'translateX(0%)')};
-  width: 100%;
-  transition: transform 250ms ease-in-out;
-
-  p {
-    pointer-events: none;
+const StyledMobileSearch = styled.div`
+  overflow-x: hidden;
+  button {
+    color: white;
+    font-size: var(--text-xl);
+    cursor: pointer;
+    font-weight: var(--fw-bold);
+    padding-block: 1rem;
+    border: solid 1px hsl(var(--color-neutral-1000));
+    background-color: hsl(var(--color-neutral-1000));
+    transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(85%)' : 'translateX(0%)')};
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
-    transition: width 600ms ease-in-out;
   }
 
   .close {
@@ -49,11 +42,11 @@ function MobileSearch({ setIsSearchOpen, isSearchOpen }) {
     });
   };
   return (
-    <StyledMobileSearch id='searchIcon' isSearchOpen={isSearchOpen} onClick={handleSearchOpen}>
-      <p>
+    <StyledMobileSearch isSearchOpen={isSearchOpen}>
+      <button onClick={handleSearchOpen}>
         <span className='close'>X</span>
         <span className='search'>Search</span>
-      </p>
+      </button>
     </StyledMobileSearch>
   );
 }

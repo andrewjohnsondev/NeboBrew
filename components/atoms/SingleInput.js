@@ -13,6 +13,7 @@ const StyledSingleInput = styled.div`
   .input-wrapper {
     input {
       width: 100%;
+      color: hsl(var(--color-neutral-600));
     }
   }
 

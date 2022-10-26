@@ -38,10 +38,7 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   const [filteredList, setFilteredList] = useState([]);
   const [initMenu] = useMenuInit();
   const searchRef = useRef();
-  useClickOutside(searchRef, (e) => {
-    if (e.target.id === 'searchIcon') return;
-    setIsSearchOpen(false);
-  });
+
   useEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       setIsSearchOpen(false);
