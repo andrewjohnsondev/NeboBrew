@@ -14,22 +14,23 @@ const StyledMobileSearch = styled.button`
   padding-block: 1rem;
   z-index: -1;
   margin-left: auto;
-  width: ${({ isSearchOpen }) => (isSearchOpen ? '15%' : '100%')};
-  transition: width 200ms ease-in-out;
+  transform: ${({ isSearchOpen }) => (isSearchOpen ? 'translateX(90%)' : 'translateX(0%)')};
+  width: 100%;
+  transition: transform 200ms ease-in-out;
 
   p {
-    /* display: ${({ isSearchOpen }) => (isSearchOpen ? 'none' : 'block')}; */
     pointer-events: none;
     display: flex;
     justify-content: center;
+    transition: width 600ms ease-in-out;
   }
 
   .close {
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? '1' : '0')};
     transition: opacity 200ms ease-in-out;
     position: absolute;
-    margin-inline: auto;
-    z-index: 9999999;
+    width: 10%;
+    left: 0;
     color: white;
   }
   .search {
