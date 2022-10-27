@@ -65,7 +65,7 @@ export default async function webhookHandler(req, res) {
         }
 
         if (!eventObject.subscription) {
-          axios.post('/api/stripe/createOrder', {
+          await axios.post('/api/stripe/createOrder', {
             createOrder: eventObject,
           });
           res.status(200).send();
