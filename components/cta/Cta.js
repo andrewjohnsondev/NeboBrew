@@ -5,7 +5,6 @@ import { Wrapper } from '../styles/utilities';
 import { config } from '../styles/GlobalStyles';
 import { useState } from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
-import neboAxios from '../../config/axios';
 import Error from '../atoms/Error';
 import wait from 'waait';
 import axios from 'axios';
@@ -62,26 +61,18 @@ export default function Cta() {
     const { data: emails } = await getEmailList({ variables: { email } });
     if (emails.allEmailList.length === 0) {
       setLoading(true);
-      neboAxios
-        .post('/', {
-          mutations: [
-            {
-              create: {
-                _type: 'emailList',
-                email: `${email}`,
-              },
-            },
-          ],
-        })
-        .then(() => {
-          setEmailSuccess(true);
-          setLoading(false);
-        })
-        .catch((err) => setError(err.message));
-
-      axios.post('/api/discount', {
-        email,
-      });
+      try {
+        await axios.post('/api/addEmail', {
+          email,
+        });
+        setEmailSuccess(true);
+        setLoading(false);
+        await axios.post('/api/discount', {
+          email,
+        });
+      } catch (error) {
+        setError(error.message);
+      }
       return;
     }
 
