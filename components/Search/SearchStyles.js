@@ -5,6 +5,7 @@ export const StyledSearch = styled.div`
   background: hsl(var(--color-neutral-100));
   position: fixed;
   top: 10vh;
+  padding-top: 3rem;
   width: 100%;
   max-height: 90vh;
   transform: translateY(-200%);
@@ -69,6 +70,7 @@ export const StyledSearch = styled.div`
   }
 
   @media (min-width: ${config.med}) {
+    padding-top: 0;
     .close {
       display: block;
     }
