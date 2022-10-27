@@ -15,6 +15,7 @@ const StyledMobileSearch = styled.div`
     height: 100%;
     display: flex;
     justify-content: center;
+    transition: transform 200ms ease-in-out;
   }
 
   .close {

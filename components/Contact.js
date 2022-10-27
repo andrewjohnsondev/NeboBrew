@@ -6,11 +6,10 @@ import Error from './atoms/Error';
 import FormInput from './atoms/FormInput';
 import { config } from './styles/GlobalStyles';
 import { useRouter } from 'next/router';
-import neboAxios from '../config/axios';
 import FormTextArea from './atoms/FormTextArea';
 import { TailSpin } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
-import FormSuccess from './atoms/FormSuccess';
+import axios from 'axios';
 
 const StyledForm = styled.form`
   display: flex;
@@ -92,22 +91,18 @@ export default function Login() {
   const onSubmit = async ({ email, message }) => {
     try {
       setLoading(true);
-      await neboAxios.post('/', {
-        mutations: [
-          {
-            create: {
-              _type: 'messages',
-              email: `${email}`,
-              message: `${message}`,
-            },
-          },
-        ],
+      await axios.post('/api/contact', {
+        contact: {
+          email,
+          message,
+        },
       });
       setLoading(false);
       router.push('/');
       toast.success(`Message Sent!`);
       reset();
     } catch (error) {
+      setLoading(false);
       toast.error(error.message);
     }
   };

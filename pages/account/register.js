@@ -7,7 +7,7 @@ import Head from 'next/head';
 const StyledRegisterPage = styled.section`
   display: grid;
   place-items: center;
-  padding-block: 4rem;
+  padding: 4rem 0.5rem;
   background-color: hsl(var(--color-primary));
 `;
 

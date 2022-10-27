@@ -7,6 +7,7 @@ import { config } from '../../styles/GlobalStyles';
 import usePrompt from '../../../lib/hooks/usePrompt';
 import { TailSpin } from 'react-loader-spinner';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 const StyledSubscriptionItem = styled.li`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -176,12 +177,16 @@ function SubscriptionItem({ item, refetchSubscriptions }) {
 
   useEffect(() => {
     const cancelSubscription = async () => {
-      const { data } = await axios.post('/api/stripe/cancelSubscription', {
-        id: _id,
-        subscriptionId,
-      });
-      if (data.status === 'canceled') {
-        refetchSubscriptions();
+      try {
+        const { data } = await axios.post('/api/stripe/cancelSubscription', {
+          id: _id,
+          subscriptionId,
+        });
+        if (data.status === 'canceled') {
+          refetchSubscriptions();
+        }
+      } catch (err) {
+        toast.error(err.message);
       }
     };
     if (answer && clickedOnItem === _id) {

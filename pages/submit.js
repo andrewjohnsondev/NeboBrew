@@ -1,10 +1,9 @@
 import Contact from '../components/Contact';
 import styled from 'styled-components';
-import { Wrapper } from '../components/styles/utilities';
 import Head from 'next/head';
 
 const StyledSubmitPage = styled.main`
-  padding-block: 6rem;
+  padding: 6rem 0.5rem;
   display: grid;
   place-items: center;
 `;
