@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       };
 
       if (req.body.user) {
-        params.customer_email = req.body.user.email;
+        params.customer_email = req.body.email;
       }
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);

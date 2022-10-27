@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import PrimaryButton from '../../atoms/buttons/PrimaryButton';
-import { config } from '../../styles/GlobalStyles';
 import { Wrapper } from '../../styles/utilities';
 import axios from 'axios';
 import getStripe from '../../../lib/getStripe';
@@ -81,7 +80,7 @@ function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
     if (user) {
       response = await axios.post('/api/stripe/subscription', {
         subscriptionDetails: subscriptionState,
-        user,
+        email: user.email,
       });
     } else {
       response = await axios.post('/api/stripe/subscription', {
