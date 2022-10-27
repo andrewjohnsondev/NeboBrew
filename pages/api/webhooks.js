@@ -114,10 +114,9 @@ export default async function webhookHandler(req, res) {
               ],
             });
           }
+          await getProductData();
+          res.status(200).send();
         }
-
-        await getProductData();
-        res.status(200).send();
       }
       if (event.type === 'customer.subscription.deleted') {
         res.status(200).send();
