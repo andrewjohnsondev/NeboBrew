@@ -29,11 +29,12 @@ export default async function webhookHandler(req, res) {
 
     if (event.type === 'checkout.session.completed') {
       if (eventObject.subscription) {
-        res.status(200).send();
         try {
           await createSubscription(eventObject, stripe);
+          res.status(200).send();
         } catch (error) {
           console.log(error.message);
+          res.status(400).send(error.message);
         }
       }
 
