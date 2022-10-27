@@ -65,7 +65,7 @@ export default async function webhookHandler(req, res) {
         }
 
         if (!eventObject.subscription) {
-          const lineItems = await stripe.checkout.sessions.listLineItems(stripeObject.id);
+          const lineItems = await stripe.checkout.sessions.listLineItems(eventObject.id);
 
           const fetchProduct = async (name) => {
             const { data } = await axios.get(
