@@ -119,9 +119,8 @@ export default async function webhookHandler(req, res) {
         }
       }
       if (event.type === 'customer.subscription.deleted') {
-        res.status(200).send();
         const id = eventObject.id;
-        const { data } = await axios.get(`${process.env.SANITY_URL}?query=*%5B_type%20%3D%3D%20'subscriptions'%20%26%26%20subscriptionId%20%3D%3D%20'${id}'%5D%7B%0A%20_id%0A%20%20%7D%20%20`);
+        const { data } = await axios.get(`${process.env.SANITY_MUTATE_URL}?query=*%5B_type%20%3D%3D%20'subscriptions'%20%26%26%20subscriptionId%20%3D%3D%20'${id}'%5D%7B%0A%20_id%0A%20%20%7D%20%20`);
 
         const subscriptionId = data.result[0]._id;
 
@@ -137,6 +136,7 @@ export default async function webhookHandler(req, res) {
             },
           ],
         });
+        res.status(200).send();
       }
     }
 
