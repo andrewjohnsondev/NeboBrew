@@ -80,6 +80,7 @@ export default async function webhookHandler(req, res) {
 
     res.status(200).send();
   } catch (error) {
+    console.log(error.message);
     res.status(500).send(error.message);
   }
 }
