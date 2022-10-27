@@ -33,7 +33,7 @@ export default async function webhookHandler(req, res) {
         try {
           await createSubscription(eventObject, stripe);
         } catch (error) {
-          console.log(error, error.message);
+          console.log(error.message);
         }
       }
 
