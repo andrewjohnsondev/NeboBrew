@@ -1,10 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-import axios from 'axios';
-
-const baseURL = 'https://10dvmugv.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22subscriptionPrices%22%5D%5B0%5D%7B%0A%20%20%20%20basePrice%0A%20%20%7D%20%20';
 
 export default async function handler(req, res) {
-  let sessionId;
   if (req.method === 'POST') {
     try {
       const price =
@@ -50,11 +46,10 @@ export default async function handler(req, res) {
       }
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
-      sessionId = session.id;
 
       res.status(200).json(session);
     } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
+      res.status(err.statusCode || 500).json('happended here');
     }
   } else {
     res.setHeader('Allow', 'POST');

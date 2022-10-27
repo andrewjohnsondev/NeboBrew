@@ -34,6 +34,7 @@ export default async function webhookHandler(req, res) {
       }
 
       if (!eventObject.subscription) {
+        console.log('subscription created order');
         res.status(200).send();
         await createOrder(eventObject, stripe);
       }
@@ -45,6 +46,5 @@ export default async function webhookHandler(req, res) {
     }
   }
 
-  console.log('test');
   res.status(200).send();
 }
