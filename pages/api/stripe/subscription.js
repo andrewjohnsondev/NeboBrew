@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         cancel_url: `${req.headers.origin}/?canceled=true`,
       };
 
-      if (req.body.user) {
+      if (req.body.email) {
         params.customer_email = req.body.email;
       }
       // Create Checkout Sessions from body params.

@@ -28,6 +28,7 @@ export default async function webhookHandler(req, res) {
     const eventObject = event.data.object;
 
     if (event.type === 'checkout.session.completed') {
+      console.log(event);
       if (eventObject.subscription) {
         res.status(200).send();
         await createSubscription(eventObject, stripe);
