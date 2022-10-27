@@ -48,7 +48,7 @@ function CartEmpty() {
   return (
     <StyledCartEmpty>
       <div className='addItem'>
-        <Image src={empty} width={70} height={70} />
+        <Image alt='' src={empty} width={70} height={70} />
       </div>
       <div>
         <p className='title'>Your cart is empty</p>

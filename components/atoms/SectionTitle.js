@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { config } from '../styles/GlobalStyles';
 
 const SectionTitle = styled.h2`
   font-weight: var(--fw-bold);

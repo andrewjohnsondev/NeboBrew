@@ -72,7 +72,6 @@ const StyledAbout = styled.main`
   .image-wrapper {
     background-color: hsl(var(--color-neutral-100));
     position: relative;
-    border-radius: 100%;
     box-shadow: hsl(var(--color-primary), 30%) 0px 25px 50px -12px;
 
     .round {

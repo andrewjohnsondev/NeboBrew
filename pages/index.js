@@ -13,7 +13,7 @@ export default function Home({ heroImage, products }) {
 
   useEffect(() => {
     setPopular(products);
-  }, []);
+  }, [setPopular, products]);
   return (
     <>
       <Head>

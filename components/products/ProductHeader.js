@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import formatMoney from '../../lib/helpers/formatMoney';
 import DetailPrice from '../atoms/DetailPrice';
-import ProductName from '../atoms/ProductName';
-import ReviewStars from '../atoms/ReviewStars';
+import ProductName from './ProductName';
+import ReviewStars from './ReviewStars';
 import Roast from '../atoms/Roast';
 const StyledProductHeader = styled.header`
   display: grid;

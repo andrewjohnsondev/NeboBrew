@@ -43,7 +43,7 @@ export default function Filter() {
     }
 
     router.push(`/coffee?roast=${query.join('%26')}`);
-  }, [query]);
+  }, [query, router]);
 
   useEffect(() => {
     init.current = true;

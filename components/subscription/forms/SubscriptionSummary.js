@@ -4,6 +4,8 @@ import { Wrapper } from '../../styles/utilities';
 import axios from 'axios';
 import getStripe from '../../../lib/getStripe';
 import { useAuth } from '../../context/Auth';
+import { useState } from 'react';
+import { TailSpin } from 'react-loader-spinner';
 
 const StyledSummary = styled.section`
   h2 {
@@ -67,6 +69,7 @@ const StyledSummary = styled.section`
 function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
   const summaryData = Object.entries(subscriptionState);
   const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const handleReset = () => {
     setCurrentStep(1);
@@ -74,6 +77,7 @@ function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
   };
 
   const handleSubscriptionCheckout = async () => {
+    setLoading(true);
     const stripe = await getStripe();
     let response;
 
@@ -93,6 +97,10 @@ function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
     const { data } = response;
 
     stripe.redirectToCheckout({ sessionId: data.id });
+
+    return () => {
+      setLoading(false);
+    };
   };
 
   return (
@@ -112,7 +120,9 @@ function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
           })}
         </ul>
         <div className='actions'>
-          <PrimaryButton onClick={handleSubscriptionCheckout}>Subscribe</PrimaryButton>
+          <PrimaryButton disabled={loading ? true : false} onClick={handleSubscriptionCheckout}>
+            {loading ? <TailSpin height={18} width={18} color='#fff' /> : 'Subscribe'}
+          </PrimaryButton>
           <button onClick={handleReset} className='reset'>
             Start Over
           </button>

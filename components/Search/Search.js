@@ -6,7 +6,6 @@ import useZustandStore from '../../store/zustandStore';
 import { StyledSearch } from './SearchStyles';
 import { gql, useLazyQuery } from '@apollo/client';
 import useMenuInit from '../../lib/hooks/useMenuInit';
-import useClickOutside from '../../lib/hooks/useClickOutside';
 import useEventListener from '../../lib/hooks/useEventListener';
 
 const productsQuery = gql`
@@ -47,7 +46,7 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
 
   useEffect(() => {
     setValue('');

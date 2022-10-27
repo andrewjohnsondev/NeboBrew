@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { config } from '../../styles/GlobalStyles';
 
 const Button = styled.button`
   text-align: center;

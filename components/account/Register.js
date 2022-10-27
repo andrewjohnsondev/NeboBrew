@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PrimaryButton from '../atoms/buttons/PrimaryButton';
 import styled, { keyframes } from 'styled-components';
@@ -21,7 +21,7 @@ const display = keyframes`
 
   to {
     display: block !important;
-	opacity: 1 !important;
+	  opacity: 1 !important;
   }
 `;
 

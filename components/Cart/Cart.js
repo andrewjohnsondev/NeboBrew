@@ -143,7 +143,7 @@ export default function Cart() {
       const { data } = response;
 
       stripe.redirectToCheckout({ sessionId: data.id });
-    } catch (errror) {
+    } catch (error) {
       setLoading(false);
       toast.error(error.message);
     }

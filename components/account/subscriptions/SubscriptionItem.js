@@ -156,7 +156,7 @@ const StyledSubscriptionItem = styled.li`
 function SubscriptionItem({ item, refetchSubscriptions }) {
   const { active, roast, subscriptionId, texture, _id, quantity, shippingAddress, subscriptionPrice, nextCharge } = item;
   const [isExpanded, setIsExpanded] = useState(false);
-  const { isPromptOpen, setPromptOpen, reset, question, setAnswer, setQuestion, answer } = usePrompt();
+  const { setPromptOpen, reset, question, setAnswer, setQuestion, answer } = usePrompt();
   const [clickedOnItem, setClickedOnItem] = useState('');
   const [loading, setLoading] = useState(false);
 

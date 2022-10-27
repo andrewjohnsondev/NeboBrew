@@ -42,7 +42,6 @@ const StyledProductDetail = styled.div`
 
   @media (min-width: ${config.med}) {
     grid-template-columns: 1fr 1fr;
-    /* grid-auto-rows: 400px; */
     gap: 4rem;
   }
 `;

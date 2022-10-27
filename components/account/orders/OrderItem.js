@@ -1,5 +1,4 @@
 import formatMoney from '../../../lib/helpers/formatMoney';
-import axios from 'axios';
 import styled from 'styled-components';
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion';
 import { useState } from 'react';
@@ -134,7 +133,7 @@ const StyledSubscriptionItem = styled.li`
 
 function OrderItem({ item }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { _id, orderCreated, orderItems, orderNumber, orderPrice, shippingAddress } = item;
+  const { orderCreated, orderNumber, orderPrice, shippingAddress } = item;
   const data = item.orderItems.map((product) => {
     return {
       product: product.product.name,

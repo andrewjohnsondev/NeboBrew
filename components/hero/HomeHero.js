@@ -15,12 +15,10 @@ const HomeHeroContent = styled.div`
   z-index: 9999;
   min-height: 100%;
 
-  /* margin-top: 5rem; */
-
   @media (min-width: ${config.med}) {
     max-width: 50ch;
     gap: 3rem;
-    /* margin-top: 6rem; */
+
     margin-left: 1rem;
   }
   @media (min-width: ${config.lg}) {

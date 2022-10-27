@@ -1,4 +1,4 @@
-import ProductImage from '../atoms/ProductImage';
+import ProductImage from './ProductImage';
 import styled from 'styled-components';
 import Price from '../atoms/Price';
 import SecondaryButton from '../atoms/buttons/SecondaryButton';

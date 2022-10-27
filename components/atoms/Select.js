@@ -1,6 +1,5 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import { config } from '../styles/GlobalStyles';
 
 const StyledSelect = styled.label`
   border: solid 1px hsl(var(--color-neutral-200));

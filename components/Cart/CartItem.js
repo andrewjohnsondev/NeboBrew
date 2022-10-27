@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 import formatMoney from '../../lib/helpers/formatMoney';
 import { useCart } from 'react-use-cart';
-import ProductImage from '../atoms/ProductImage';
+import ProductImage from '../products/ProductImage';
 
 const StyledCartItem = styled.li`
   display: grid;

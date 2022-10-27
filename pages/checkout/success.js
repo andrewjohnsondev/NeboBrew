@@ -3,7 +3,6 @@ import { useCart } from 'react-use-cart';
 import styled from 'styled-components';
 import PrimaryButton from '../../components/atoms/buttons/PrimaryButton';
 import runFireworks from '../../lib/utils/fireworks';
-import checkmark from '../../public/assets/checkmark.svg';
 import { config } from '../../components/styles/GlobalStyles';
 import Head from 'next/head';
 
@@ -90,7 +89,7 @@ export default function Success() {
   useEffect(() => {
     runFireworks();
     emptyCart();
-  }, []);
+  }, [emptyCart]);
   return (
     <>
       <Head>

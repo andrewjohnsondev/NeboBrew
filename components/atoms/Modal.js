@@ -14,7 +14,6 @@ const StyledModal = styled.div`
   background-color: hsl(var(--color-white));
   padding: 1.5rem;
   min-width: 240px;
-
   border-radius: var(--br);
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};

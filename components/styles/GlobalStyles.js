@@ -7,7 +7,6 @@ export const config = {
 };
 
 const GlobalStyle = createGlobalStyle`
-  /* Box sizing rules */
 *,
 *::before,
 *::after {

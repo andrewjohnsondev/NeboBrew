@@ -58,7 +58,7 @@ export default function FilterSelect({ title, href, query, setQuery }) {
         checkbox.current.checked = true;
       }
     }
-  }, [router.query]);
+  }, [router, query, href]);
   const handleFilterClick = (e) => {
     e.preventDefault();
     e.currentTarget.children.input.checked = !e.currentTarget.children.input.checked;
