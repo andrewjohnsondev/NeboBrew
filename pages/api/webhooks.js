@@ -59,13 +59,13 @@ export default async function webhookHandler(req, res) {
                 },
               ],
             });
+            res.status(200).send();
           } catch (error) {
             console.log(error.message);
           }
         }
 
         if (!eventObject.subscription) {
-          res.status(200).send();
           const lineItems = await stripe.checkout.sessions.listLineItems(stripeObject.id);
 
           const fetchProduct = async (name) => {
@@ -117,8 +117,8 @@ export default async function webhookHandler(req, res) {
           }
         }
 
-        res.status(200).send();
         await getProductData();
+        res.status(200).send();
       }
       if (event.type === 'customer.subscription.deleted') {
         res.status(200).send();
