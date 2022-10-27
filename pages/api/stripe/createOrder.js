@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-import neboAxios from '../../config/axios';
+import neboAxios from '../../../config/axios';
 import { format } from 'date-fns';
 const orderid = require('order-id')('key');
 import axios from 'axios';
