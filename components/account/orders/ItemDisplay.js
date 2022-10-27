@@ -1,4 +1,4 @@
-import ProductImage from '../../atoms/ProductImage';
+import ProductImage from '../../products/ProductImage';
 import styled from 'styled-components';
 import formatMoney from '../../../lib/helpers/formatMoney';
 import { config } from '../../styles/GlobalStyles';
