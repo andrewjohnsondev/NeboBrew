@@ -82,7 +82,7 @@ function QuickShop() {
             <h3>Quantity:</h3>
             <Quantity style={{ marginTop: '1.5rem' }} quantity={quantity} setQuantity={setQuantity} />
           </div>
-          <PrimaryButton className='addBtn' onClick={addToCart}>
+          <PrimaryButton id='quickShop' className='addBtn' onClick={addToCart}>
             Add To Cart
           </PrimaryButton>
         </StyledModalBody>

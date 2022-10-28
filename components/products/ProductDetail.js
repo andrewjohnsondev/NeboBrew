@@ -68,7 +68,7 @@ export default function ProductDetail({ product }) {
             <ProductHeader product={product} />
             <p className='description'>{product.description}</p>
             <TextureSelect texture={texture} setTexture={setTexture} />
-            <PrimaryButton onClick={addToCart} className='full'>
+            <PrimaryButton id='addToCart' onClick={addToCart} className='full'>
               Add To Cart
             </PrimaryButton>
           </div>

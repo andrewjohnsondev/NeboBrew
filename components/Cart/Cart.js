@@ -99,6 +99,8 @@ export default function Cart() {
   useClickOutside(cartRef, (e) => {
     if (e.target.id === 'cartIcon') return;
     if (e.target.id === 'removeCart') return;
+    if (e.target.id === 'quickShop') return;
+    if (e.target.id === 'addToCart') return;
     if (!isCartOpen) return;
     closeCartState();
   });
