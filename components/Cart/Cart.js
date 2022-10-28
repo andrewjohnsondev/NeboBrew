@@ -98,6 +98,7 @@ export default function Cart() {
   const cartRef = useRef();
   useClickOutside(cartRef, (e) => {
     if (e.target.id === 'cartIcon') return;
+    if (e.target.id === 'removeCart') return;
     if (!isCartOpen) return;
     closeCartState();
   });

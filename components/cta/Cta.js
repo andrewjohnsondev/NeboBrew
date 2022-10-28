@@ -62,14 +62,14 @@ export default function Cta() {
     if (emails.allEmailList.length === 0) {
       setLoading(true);
       try {
+        await axios.post('/api/discount', {
+          email,
+        });
         await axios.post('/api/addEmail', {
           email,
         });
         setEmailSuccess(true);
         setLoading(false);
-        await axios.post('/api/discount', {
-          email,
-        });
       } catch (error) {
         setError(error.message);
       }

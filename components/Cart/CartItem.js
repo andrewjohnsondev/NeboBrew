@@ -108,7 +108,7 @@ function CartItem({ item }) {
       </div>
       <div className='price'>
         <span>
-          <button onClick={() => removeItem(item.id)} className='close'>
+          <button id='removeCart' onClick={() => removeItem(item.id)} className='close'>
             Remove
           </button>
         </span>
