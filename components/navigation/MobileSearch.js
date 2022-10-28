@@ -16,6 +16,10 @@ const StyledMobileSearch = styled.div`
     display: flex;
     justify-content: center;
     transition: transform 200ms ease-in-out;
+
+    span {
+      pointer-events: none;
+    }
   }
 
   .close {
@@ -38,13 +42,14 @@ const StyledMobileSearch = styled.div`
 
 function MobileSearch({ setIsSearchOpen, isSearchOpen }) {
   const handleSearchOpen = () => {
+    console.log('clicked');
     setIsSearchOpen((state) => {
       return !state;
     });
   };
   return (
-    <StyledMobileSearch isSearchOpen={isSearchOpen}>
-      <button onClick={handleSearchOpen}>
+    <StyledMobileSearch id='searchText' isSearchOpen={isSearchOpen}>
+      <button id='search' onClick={handleSearchOpen}>
         <span className='close'>X</span>
         <span className='search'>Search</span>
       </button>

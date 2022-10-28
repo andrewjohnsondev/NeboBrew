@@ -40,6 +40,7 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   const searchRef = useRef();
   useClickOutside(searchRef, (e) => {
     if (e.target.id === 'searchIcon') return;
+    if (e.target.id === 'search') return;
     if (!isSearchOpen) return;
     setIsSearchOpen();
   });
