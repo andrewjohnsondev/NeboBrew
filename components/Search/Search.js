@@ -7,6 +7,7 @@ import { StyledSearch } from './SearchStyles';
 import { gql, useLazyQuery } from '@apollo/client';
 import useMenuInit from '../../lib/hooks/useMenuInit';
 import useEventListener from '../../lib/hooks/useEventListener';
+import useClickOutside from '../../lib/hooks/useClickOutside';
 
 const productsQuery = gql`
   query {
@@ -37,6 +38,11 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
   const [filteredList, setFilteredList] = useState([]);
   const [initMenu] = useMenuInit();
   const searchRef = useRef();
+  useClickOutside(searchRef, (e) => {
+    if (e.target.id === 'searchIcon') return;
+    if (!isSearchOpen) return;
+    setIsSearchOpen();
+  });
 
   useEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -74,7 +80,7 @@ function Search({ isSearchOpen, setIsSearchOpen }) {
     if (value === '') return setFilteredList([]);
     const filterProducts = products.filter((product) => product.name.toLowerCase().includes(value.toLowerCase()) || product.roast[0].toLowerCase().includes(value.toLowerCase()));
     setFilteredList(filterProducts);
-  }, [value]);
+  }, [value, products]);
 
   return (
     <StyledSearch ref={searchRef} initMenu={initMenu} className={isSearchOpen ? 'open' : ''}>

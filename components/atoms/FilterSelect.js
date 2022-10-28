@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { config } from '../styles/GlobalStyles';
 
@@ -49,25 +49,20 @@ const StyledFilter = styled.a`
 export default function FilterSelect({ title, href, query, setQuery }) {
   const router = useRouter();
   const checkbox = useRef();
-
-  useEffect(() => {
-    let queryArr;
-    if (router.query.roast) {
-      queryArr = router.query.roast.split('&');
-      if (queryArr.includes(href)) {
-        checkbox.current.checked = true;
-      }
-    }
-  }, [router, query, href]);
-  const handleFilterClick = (e) => {
+  const [checked, setCheck] = useState(false);
+  const handleCheckboxClick = (e) => {
     e.preventDefault();
-    e.currentTarget.children.input.checked = !e.currentTarget.children.input.checked;
-    e.currentTarget.children.input.checked ? setQuery((prev) => [...prev, href]) : setQuery((prev) => prev.filter((i) => i !== href));
+    setCheck((state) => !state);
   };
 
+  useEffect(() => {
+    if (query.length === 0 && !checked) return;
+    checked ? setQuery((state) => [...state, href]) : setQuery((state) => state.filter((i) => i !== href));
+  }, [checked, setQuery, href]);
+
   return (
-    <StyledFilter href='/coffee' onClick={handleFilterClick}>
-      {title} <input ref={checkbox} id='input' name='input' type='checkbox' />
+    <StyledFilter onClick={handleCheckboxClick} href='/coffee'>
+      {title} <input checked={checked} ref={checkbox} id='input' name='input' type='checkbox' />
     </StyledFilter>
   );
 }

@@ -7,7 +7,6 @@ import StyledFilter from './StyledFilter';
 export default function Filter() {
   const [query, setQuery] = useState([]);
   const router = useRouter();
-  const init = useRef(false);
   const mobileFilterMenu = useRef();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -16,42 +15,13 @@ export default function Filter() {
   };
 
   useEffect(() => {
-    mobileFilterMenu.current.classList.remove('init');
-  });
-
-  useEffect(() => {
-    let queryArr;
-    if (router.query.roast) {
-      queryArr = router.query.roast.split('&');
-      setQuery(queryArr);
-    }
-  }, [router.query.roast]);
-
-  useEffect(() => {
-    if (init.current && query.length === 0) {
-      router.push('/coffee');
-      return;
-    }
-    if (query.length === 0) {
-      return;
-    }
-
-    if (router.query.roast) {
-      if (router.query.roast === query.join('&')) {
-        return;
-      }
-    }
-
-    router.push(`/coffee?roast=${query.join('%26')}`);
-  }, [query, router]);
-
-  useEffect(() => {
-    init.current = true;
-  }, []);
+    if (query) router.push(`/coffee?roast=${query.join('%26')}`);
+    if (!query) router.push(`/coffee`);
+  }, [query]);
 
   return (
     <StyledFilter>
-      <div ref={mobileFilterMenu} className={`filter-links init ${isFilterOpen ? 'open' : ''}`}>
+      <div ref={mobileFilterMenu} className={`filter-links  ${isFilterOpen ? 'open' : ''}`}>
         <button onClick={handleFilterMenu} className='close'>
           <img src='/assets/close.svg' alt='close' />
         </button>

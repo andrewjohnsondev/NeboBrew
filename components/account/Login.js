@@ -138,11 +138,10 @@ export default function Login() {
     } catch (err) {
       if (err.message === 'Firebase: Error (auth/user-not-found).') {
         setError("User with that email doesn't exist.");
-        console.log(data.email);
       } else {
         setError(err.message);
       }
-      console.log(err);
+
       await wait(3000);
       setError('');
     }

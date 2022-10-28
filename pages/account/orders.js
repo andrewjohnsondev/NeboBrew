@@ -67,7 +67,7 @@ function Orders() {
         variables: {
           email: user.email,
         },
-      }).then((data) => console.log(data));
+      });
     }
   }, [user, fetchOrders]);
   useEffect(() => {

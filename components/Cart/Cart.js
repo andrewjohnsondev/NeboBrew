@@ -98,7 +98,7 @@ export default function Cart() {
   const cartRef = useRef();
   useClickOutside(cartRef, (e) => {
     if (e.target.id === 'cartIcon') return;
-    if (isCartOpen) return;
+    if (!isCartOpen) return;
     closeCartState();
   });
   useEventListener('keydown', (e) => {

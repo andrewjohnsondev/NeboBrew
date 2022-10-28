@@ -80,7 +80,6 @@ function SubscriptionSummary({ subscriptionState, dispatch, setCurrentStep }) {
     setLoading(true);
     const stripe = await getStripe();
     let response;
-    console.log(user);
 
     if (user) {
       response = await axios.post('/api/stripe/subscription', {

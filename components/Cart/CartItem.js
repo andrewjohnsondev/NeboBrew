@@ -57,6 +57,9 @@ const StyledCartItem = styled.li`
       position: absolute;
       right: 0;
       top: -5px;
+      font-size: 0.75rem;
+      text-decoration: underline;
+      color: hsl(var(--color-neutral-700));
     }
   }
 
@@ -80,7 +83,7 @@ const StyledCartItem = styled.li`
 `;
 
 function CartItem({ item }) {
-  const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } = useCart();
+  const { updateItemQuantity, removeItem } = useCart();
   return (
     <StyledCartItem key={item.id}>
       <div className='image-container'>
@@ -106,7 +109,7 @@ function CartItem({ item }) {
       <div className='price'>
         <span>
           <button onClick={() => removeItem(item.id)} className='close'>
-            &times;
+            Remove
           </button>
         </span>
         <p>{formatMoney(item.price * item.quantity)}</p>

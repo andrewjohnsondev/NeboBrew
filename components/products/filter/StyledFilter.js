@@ -35,10 +35,6 @@ const StyledFilter = styled.section`
     transform: translateX(0);
   }
 
-  .filter-links.init {
-    display: none;
-  }
-
   .done {
     background-color: hsl(var(--color-white));
     color: hsl(var(--color-neutral-1000));

@@ -8,6 +8,7 @@ const StyledSelect = styled.label`
   border-radius: var(--br);
   text-transform: uppercase;
   font-size: var(--text-sm);
+  cursor: pointer;
 
   &.active {
     border-color: hsl(var(--color-neutral-1000));
