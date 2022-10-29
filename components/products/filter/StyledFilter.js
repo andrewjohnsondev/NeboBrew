@@ -6,6 +6,7 @@ const StyledFilter = styled.section`
   padding-block: 1.5rem;
   display: flex;
   justify-content: center;
+  border: none;
 
   .filter-links {
     display: flex;
@@ -13,14 +14,14 @@ const StyledFilter = styled.section`
     z-index: 9999;
     inset: 0;
     top: 10vh;
-    padding-top: 10rem;
+    padding: 13rem 1rem 2rem 1rem;
     gap: 2rem;
     background-color: hsl(var(--color-neutral-1000));
     position: fixed;
-    padding-inline: 1rem;
     text-align: center;
     transform: translateX(100%);
     transition: all 500ms;
+    overflow-y: auto;
 
     h2 {
       color: hsl(var(--color-white));
@@ -43,7 +44,7 @@ const StyledFilter = styled.section`
 
   .close {
     position: absolute;
-    top: 100px;
+    top: 130px;
     right: 30px;
     cursor: pointer;
     background-color: transparent;
@@ -71,7 +72,6 @@ const StyledFilter = styled.section`
       align-items: center;
       justify-content: center;
       position: static;
-      padding-top: 0;
       padding-block: 1rem;
       transform: translateX(0);
       gap: 4rem;

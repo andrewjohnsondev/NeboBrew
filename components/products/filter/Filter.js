@@ -30,7 +30,7 @@ export default function Filter() {
         <FilterSelect query={query} setQuery={setQuery} href='medium' title='Medium Roast' />
         <FilterSelect query={query} setQuery={setQuery} href='dark' title='Dark Roast' />
         <SecondaryButton onClick={handleFilterMenu} className='done'>
-          Done
+          Apply
         </SecondaryButton>
       </div>
 
