@@ -11,6 +11,7 @@ import Cart from '../components/Cart/Cart';
 import QuickShop from '../components/products/QuickShop/QuickShop';
 import styled from 'styled-components';
 import PromptOverlay from '../components/prompt/PromptOverlay';
+
 const FlexWrapper = styled.div`
   display: flex;
   flex-direction: column;

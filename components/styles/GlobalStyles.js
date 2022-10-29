@@ -56,6 +56,11 @@ const GlobalStyle = createGlobalStyle`
   --toastify-color-success: hsl(26, 11%, 46%);
 }
 
+body {
+  visibility: hidden;
+}
+
+
 
 /* Remove default margin */
 body,
@@ -177,6 +182,10 @@ select {
 
 ul.slick-dots {
   bottom: -15%;
+}
+
+.load {
+  visibility: visible;
 }
 
 
