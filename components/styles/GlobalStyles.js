@@ -56,9 +56,13 @@ const GlobalStyle = createGlobalStyle`
   --toastify-color-success: hsl(26, 11%, 46%);
 }
 
-body {
-  visibility: hidden;
+
+
+.load {
+  visibility: visible !important;
+
 }
+
 
 
 

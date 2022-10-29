@@ -52,10 +52,6 @@ export default function Header() {
   }, [isSearchOpen, isMobileNavOpen]);
 
   useEffect(() => {
-    document.body.classList.add('load');
-  }, []);
-
-  useEffect(() => {
     const handleEsc = (e) => {
       e.key === 'Escape' && setIsSearchOpen(false);
     };

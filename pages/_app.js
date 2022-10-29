@@ -11,6 +11,7 @@ import Cart from '../components/Cart/Cart';
 import QuickShop from '../components/products/QuickShop/QuickShop';
 import styled from 'styled-components';
 import PromptOverlay from '../components/prompt/PromptOverlay';
+import { useEffect, useState } from 'react';
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -19,6 +20,14 @@ const FlexWrapper = styled.div`
 `;
 
 function MyApp({ Component, pageProps }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (!loading) document.body.classList.add('load');
+  }, [loading]);
   return (
     <>
       <GlobalStyles />
