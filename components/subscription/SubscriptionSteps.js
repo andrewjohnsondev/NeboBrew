@@ -73,6 +73,7 @@ const StyledSubscriptionSteps = styled.div`
 export default function SubscriptionSteps({ currentStep, setCurrentStep, dispatch }) {
   const steps = [1, 2, 3, 4];
   const handleClick = (step) => {
+    if (step === 4) return;
     currentStep > step && setCurrentStep(step);
     dispatch({ type: 'RESET-PLAN' });
   };
